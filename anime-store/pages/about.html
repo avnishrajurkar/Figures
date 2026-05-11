@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AniCollect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .about-header {
+            padding: 150px 5% 80px;
+            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+            text-align: center;
+        }
+        
+        .page-title {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .about-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .story-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(162, 155, 254, 0.3);
+        }
+        
+        .story-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .story-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .team-section {
+            padding: 80px 5%;
+            background: var(--darker-bg);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+        
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+        
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .stats-section {
+            padding: 80px 5%;
+            background: var(--gradient-1);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: white;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Ani<span class="highlight">Collect</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="figures.html">Figures</a></li>
+            <li><a href="fashion.html">Fashion</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- About Header -->
+    <section class="about-header">
+        <h1 class="page-title">About AniCollect</h1>
+        <p style="color: var(--gray-text); font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            We're passionate anime fans dedicated to bringing you the finest collectibles and fashion from your favorite series
+        </p>
+    </section>
+
+    <!-- Our Story -->
+    <section class="about-section">
+        <h2 class="section-title">Our Story</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <div class="story-icon">🎌</div>
+                <h3>Founded by Fans</h3>
+                <p style="color: var(--gray-text);">
+                    Started in 2020 by a group of anime enthusiasts who couldn't find quality collectibles in one place. We understood the struggle of every collector.
+                </p>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-icon">⭐</div>
+                <h3>Quality First</h3>
+                <p style="color: var(--gray-text);">
+                    Every product in our store is carefully selected and verified for authenticity. We work directly with manufacturers to ensure premium quality.
+                </p>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-icon">🌍</div>
+                <h3>Global Community</h3>
+                <p style="color: var(--gray-text);">
+                    Serving anime fans worldwide with fast shipping and excellent customer service. We're building a community of collectors who share our passion.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="section-title" style="color: white; -webkit-text-fill-color: white;">By The Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Products</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Anime Series</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Satisfaction Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2 class="section-title">Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar">👨‍💼</div>
+                <h3 style="color: var(--light-text); margin-bottom: 0.5rem;">Alex Chen</h3>
+                <p style="color: var(--primary-color);">Founder & CEO</p>
+                <p style="color: var(--gray-text); margin-top: 1rem;">One Piece superfan and collector extraordinaire</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-avatar">👩‍🎨</div>
+                <h3 style="color: var(--light-text); margin-bottom: 0.5rem;">Sarah Johnson</h3>
+                <p style="color: var(--secondary-color);">Head of Design</p>
+                <p style="color: var(--gray-text); margin-top: 1rem;">Naruto enthusiast with an eye for detail</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-avatar">👨‍💻</div>
+                <h3 style="color: var(--light-text); margin-bottom: 0.5rem;">Mike Tanaka</h3>
+                <p style="color: var(--accent-color);">Tech Lead</p>
+                <p style="color: var(--gray-text); margin-top: 1rem;">DBZ lover who codes at Super Saiyan speed</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-avatar">👩‍💼</div>
+                <h3 style="color: var(--light-text); margin-bottom: 0.5rem;">Emma Williams</h3>
+                <p style="color: var(--primary-color);">Customer Success</p>
+                <p style="color: var(--gray-text); margin-top: 1rem;">Demon Slayer fan dedicated to your satisfaction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="about-section">
+        <h2 class="section-title">Our Values</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <div class="story-icon">🤝</div>
+                <h3>Authenticity</h3>
+                <p style="color: var(--gray-text);">
+                    We guarantee 100% authentic products. No fakes, no replicas, just genuine collectibles for serious fans.
+                </p>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-icon">💎</div>
+                <h3>Excellence</h3>
+                <p style="color: var(--gray-text);">
+                    From packaging to delivery, we strive for perfection in every aspect of your shopping experience.
+                </p>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-icon">❤️</div>
+                <h3>Passion</h3>
+                <p style="color: var(--gray-text);">
+                    We're not just sellers – we're fellow otaku who understand what these characters mean to you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AniCollect</h4>
+                <p>Your ultimate destination for anime figures and fashion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="figures.html">Figures</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <span>📱</span>
+                    <span>📸</span>
+                    <span>🐦</span>
+                    <span>📺</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

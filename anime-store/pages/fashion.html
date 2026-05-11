@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Fashion - AniCollect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            padding: 150px 5% 50px;
+            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+            text-align: center;
+        }
+        
+        .page-title {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--light-text);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .products-section {
+            padding: 50px 5%;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .fashion-category {
+            padding: 50px 5%;
+            background: var(--darker-bg);
+        }
+        
+        .category-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .fashion-banner {
+            height: 250px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-family: 'Bangers', cursive;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .fashion-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+        
+        .fashion-banner:hover::before {
+            transform: scale(1.1);
+        }
+        
+        .banner-tshirts::before {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+        }
+        
+        .banner-hoodies::before {
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+        }
+        
+        .banner-accessories::before {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Ani<span class="highlight">Collect</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="figures.html">Figures</a></li>
+            <li><a href="fashion.html" class="active">Fashion</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">Anime Fashion</h1>
+        <p style="color: var(--gray-text); font-size: 1.2rem;">Streetwear and apparel inspired by iconic characters</p>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('tshirts')">T-Shirts</button>
+            <button class="filter-btn" onclick="filterProducts('hoodies')">Hoodies</button>
+            <button class="filter-btn" onclick="filterProducts('jackets')">Jackets</button>
+            <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+        </div>
+    </section>
+
+    <!-- Fashion Categories Showcase -->
+    <section class="fashion-category">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-showcase">
+            <div class="fashion-banner banner-tshirts">
+                <div class="banner-content">
+                    👕 T-Shirts
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">Graphic tees from your favorite series</p>
+                </div>
+            </div>
+            <div class="fashion-banner banner-hoodies">
+                <div class="banner-content">
+                    🧥 Hoodies
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">Cozy wear with anime designs</p>
+                </div>
+            </div>
+            <div class="fashion-banner banner-accessories">
+                <div class="banner-content">
+                    🎒 Accessories
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">Bags, hats, and more</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="product-grid">
+            <div class="product-card" data-category="tshirts">
+                <div class="product-badge">Hot</div>
+                <div class="product-image">👕</div>
+                <h3>Demon Slayer Corps T-Shirt</h3>
+                <p class="product-price">$29.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="tshirts">
+                <div class="product-image">⚡</div>
+                <h3>Thunder Breathing T-Shirt</h3>
+                <p class="product-price">$29.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="hoodies">
+                <div class="product-badge new">New</div>
+                <div class="product-image">🧥</div>
+                <h3>Straw Hat Pirates Hoodie</h3>
+                <p class="product-price">$59.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="hoodies">
+                <div class="product-image">🍥</div>
+                <h3>Akatsuki Cloud Hoodie</h3>
+                <p class="product-price">$54.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="jackets">
+                <div class="product-badge hot">Limited</div>
+                <div class="product-image">🧢</div>
+                <h3>Survey Corps Jacket</h3>
+                <p class="product-price">$79.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="jackets">
+                <div class="product-image">🔥</div>
+                <h3>Flame Hashira Jacket</h3>
+                <p class="product-price">$74.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">🎒</div>
+                <h3>Pokemon Pikachu Backpack</h3>
+                <p class="product-price">$49.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="accessories">
+                <div class="product-badge">Hot</div>
+                <div class="product-image">🧢</div>
+                <h3>Luffy Straw Hat</h3>
+                <p class="product-price">$24.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">📿</div>
+                <h3>Naruto Akatsuki Ring</h3>
+                <p class="product-price">$19.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="tshirts">
+                <div class="product-image">🐉</div>
+                <h3>Dragon Ball Z Capsule Corp Tee</h3>
+                <p class="product-price">$32.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="hoodies">
+                <div class="product-image">💀</div>
+                <h3>Tokyo Ghoul Kaneki Hoodie</h3>
+                <p class="product-price">$56.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card" data-category="accessories">
+                <div class="product-badge new">New</div>
+                <div class="product-image">⌚</div>
+                <h3>Evangelion NERV Watch</h3>
+                <p class="product-price">$89.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AniCollect</h4>
+                <p>Your ultimate destination for anime figures and fashion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="figures.html">Figures</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <span>📱</span>
+                    <span>📸</span>
+                    <span>🐦</span>
+                    <span>📺</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

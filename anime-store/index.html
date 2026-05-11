@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniCollect - Anime Figures & Fashion</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Ani<span class="highlight">Collect</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="pages/figures.html">Figures</a></li>
+            <li><a href="pages/fashion.html">Fashion</a></li>
+            <li><a href="pages/about.html">About</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Collect Your</span>
+                <span class="title-line highlight-text">Passion</span>
+            </h1>
+            <p class="hero-subtitle">Premium Anime Figures & Exclusive Fashion</p>
+            <div class="hero-buttons">
+                <a href="pages/figures.html" class="btn btn-primary">Shop Figures</a>
+                <a href="pages/fashion.html" class="btn btn-secondary">Explore Fashion</a>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="floating-elements">
+                <div class="float-item item-1">⭐</div>
+                <div class="float-item item-2">🎌</div>
+                <div class="float-item item-3">⚡</div>
+                <div class="float-item item-4">🔥</div>
+                <div class="float-item item-5">💫</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <h2 class="section-title">Featured Categories</h2>
+        <div class="category-grid">
+            <div class="category-card" data-category="action">
+                <div class="category-icon">🗡️</div>
+                <h3>Action Figures</h3>
+                <p>Detailed collectibles from your favorite series</p>
+                <a href="pages/figures.html" class="category-link">Explore →</a>
+            </div>
+            <div class="category-card" data-category="fashion">
+                <div class="category-icon">👕</div>
+                <h3>Anime Fashion</h3>
+                <p>Streetwear inspired by iconic characters</p>
+                <a href="pages/fashion.html" class="category-link">Explore →</a>
+            </div>
+            <div class="category-card" data-category="limited">
+                <div class="category-icon">🏆</div>
+                <h3>Limited Editions</h3>
+                <p>Exclusive releases and rare finds</p>
+                <a href="pages/figures.html" class="category-link">Explore →</a>
+            </div>
+            <div class="category-card" data-category="accessories">
+                <div class="category-icon">🎒</div>
+                <h3>Accessories</h3>
+                <p>Complete your collection with extras</p>
+                <a href="pages/fashion.html" class="category-link">Explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section class="products">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="product-slider">
+            <div class="product-card">
+                <div class="product-badge">Hot</div>
+                <div class="product-image">🎭</div>
+                <h3>Demon Slayer - Tanjiro</h3>
+                <p class="product-price">$89.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-badge new">New</div>
+                <div class="product-image">🦸</div>
+                <h3>My Hero - Deku</h3>
+                <p class="product-price">$79.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">👊</div>
+                <h3>One Piece - Luffy</h3>
+                <p class="product-price">$94.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-badge hot">Limited</div>
+                <div class="product-image">⚔️</div>
+                <h3>Attack on Titan - Levi</h3>
+                <p class="product-price">$129.99</p>
+                <button class="btn-add-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Reference Section -->
+    <section class="anime-showcase">
+        <h2 class="section-title">By Series</h2>
+        <div class="anime-grid">
+            <div class="anime-card demon-slayer">
+                <div class="anime-overlay"></div>
+                <h3>Demon Slayer</h3>
+                <p>Breathing Styles Collection</p>
+            </div>
+            <div class="anime-card one-piece">
+                <div class="anime-overlay"></div>
+                <h3>One Piece</h3>
+                <p>Straw Hat Crew</p>
+            </div>
+            <div class="anime-card naruto">
+                <div class="anime-overlay"></div>
+                <h3>Naruto</h3>
+                <p>Hidden Village Legends</p>
+            </div>
+            <div class="anime-card dbz">
+                <div class="anime-overlay"></div>
+                <h3>Dragon Ball Z</h3>
+                <p>Saiyan Warriors</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join the Community</h2>
+            <p>Get exclusive drops and early access to limited editions</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AniCollect</h4>
+                <p>Your ultimate destination for anime figures and fashion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="pages/figures.html">Figures</a></li>
+                    <li><a href="pages/fashion.html">Fashion</a></li>
+                    <li><a href="pages/about.html">About Us</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <span>📱</span>
+                    <span>📸</span>
+                    <span>🐦</span>
+                    <span>📺</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
