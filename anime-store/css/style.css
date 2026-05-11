@@ -1,21 +1,21 @@
 /* ========================================
-   ANICOLLECT - PREMIUM ANIME STORE
-   Advanced CSS with Anime-Themed Animations
+   ANICOLLECT - MANGA/ANIME STYLE CSS
+   Hand-drawn aesthetic, no emojis
    ======================================== */
 
 :root {
-    --one-piece-blue: #1a5276;
-    --one-piece-gold: #d4ac0d;
-    --demon-slayer-red: #c0392b;
-    --demon-slayer-water: #3498db;
-    --aot-brown: #5d4037;
-    --aot-green: #27ae60;
-    --dbz-orange: #e67e22;
-    --dbz-yellow: #f1c40f;
-    --naruto-orange: #ff6b35;
-    --naruto-blue: #4a90e2;
-    --jjk-purple: #8e44ad;
-    --jjk-black: #1a1a2e;
+    --ink-black: #1a1a1a;
+    --paper-white: #f5f1e8;
+    --manga-panel: #fffef9;
+    --accent-red: #c41e3a;
+    --accent-orange: #ff6b35;
+    --accent-yellow: #ffd700;
+    --accent-blue: #4a90d9;
+    --accent-green: #2d5016;
+    --border-thick: 3px solid var(--ink-black);
+    --border-thin: 1px solid var(--ink-black);
+    --shadow-hard: 4px 4px 0px var(--ink-black);
+    --shadow-soft: 2px 2px 0px rgba(0,0,0,0.2);
 }
 
 * {
@@ -25,149 +25,135 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'M PLUS 1p', sans-serif;
+    background-color: var(--paper-white);
+    color: var(--ink-black);
     overflow-x: hidden;
-    background: #0a0a0a;
-    color: #fff;
+    line-height: 1.6;
 }
 
 /* ========================================
-   ONE PIECE BACKGROUND ANIMATION
+   MANGA BACKGROUND EFFECTS
    ======================================== */
-.anime-bg {
+
+.manga-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: -1;
     overflow: hidden;
 }
 
-.one-piece-bg {
-    background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #3498db 100%);
-}
-
-.ocean-waves {
+.panel {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 300px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='%23ffffff' opacity='0.1'/%3E%3C/svg%3E");
-    animation: waveMove 8s ease-in-out infinite;
+    border: var(--border-thick);
+    background: var(--manga-panel);
+    opacity: 0.5;
 }
 
-.ocean-waves::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    width: 100%;
-    height: 300px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='%23ffffff' opacity='0.05'/%3E%3C/svg%3E");
-    animation: waveMove 12s ease-in-out infinite reverse;
+.panel-1 {
+    top: 10%;
+    left: 5%;
+    width: 300px;
+    height: 400px;
+    transform: rotate(-5deg);
+    animation: floatPanel 8s ease-in-out infinite;
 }
 
-@keyframes waveMove {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    50% { transform: translateX(-50px) translateY(-20px); }
-}
-
-.ship-sailing {
-    position: absolute;
-    bottom: 150px;
-    left: -200px;
-    width: 200px;
-    height: 100px;
-    background: linear-gradient(45deg, #8b4513, #a0522d);
-    clip-path: polygon(20% 100%, 80% 100%, 100% 60%, 50% 0%, 0% 60%);
-    animation: sailShip 30s linear infinite;
-}
-
-.ship-sailing::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 80px;
-    background: #654321;
-}
-
-.ship-sailing::after {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    width: 60px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    clip-path: polygon(0% 100%, 100% 50%, 0% 0%);
-}
-
-@keyframes sailShip {
-    0% { left: -200px; transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(2deg); }
-    50% { transform: translateY(0) rotate(0deg); }
-    75% { transform: translateY(-10px) rotate(-2deg); }
-    100% { left: calc(100% + 200px); transform: translateY(0) rotate(0deg); }
-}
-
-.straw-hat-floating {
-    position: absolute;
-    top: 20%;
+.panel-2 {
+    top: 60%;
     right: 10%;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, #f1c40f 60%, transparent 70%);
-    border-radius: 50%;
-    animation: floatHat 6s ease-in-out infinite;
-    box-shadow: 0 0 30px rgba(241, 196, 15, 0.5);
+    width: 250px;
+    height: 350px;
+    transform: rotate(3deg);
+    animation: floatPanel 10s ease-in-out infinite reverse;
 }
 
-.straw-hat-floating::before {
-    content: '';
+.panel-3 {
+    bottom: 5%;
+    left: 15%;
+    width: 200px;
+    height: 300px;
+    transform: rotate(-2deg);
+    animation: floatPanel 12s ease-in-out infinite;
+}
+
+@keyframes floatPanel {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(-3deg); }
+}
+
+.speed-lines {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border: 3px solid #c0392b;
-    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 50px,
+        rgba(0,0,0,0.03) 50px,
+        rgba(0,0,0,0.03) 52px
+    );
+    animation: speedLines 0.5s linear infinite;
 }
 
-@keyframes floatHat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(10deg); }
+@keyframes speedLines {
+    from { background-position: 0 0; }
+    to { background-position: 52px 0; }
 }
 
 /* ========================================
-   NAVIGATION
+   NAVIGATION - MANGA STYLE
    ======================================== */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 1rem 5%;
+
+.manga-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    background: var(--manga-panel);
+    border-bottom: var(--border-thick);
+    position: sticky;
+    top: 0;
     z-index: 1000;
-    border-bottom: 2px solid var(--one-piece-gold);
+    box-shadow: var(--shadow-hard);
+}
+
+.logo {
+    position: relative;
 }
 
 .logo-text {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--ink-black);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 }
 
-.highlight {
-    color: var(--one-piece-gold);
-    text-shadow: 0 0 10px rgba(212, 172, 13, 0.5);
+.logo-text .accent {
+    color: var(--accent-red);
+}
+
+.logo-splash {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    background: var(--accent-red);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: splashPulse 2s ease-in-out infinite;
+}
+
+@keyframes splashPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(180deg); }
 }
 
 .nav-links {
@@ -177,676 +163,661 @@ body {
 }
 
 .nav-links a {
-    color: #fff;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    color: var(--ink-black);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
     position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-.nav-links a::after {
+.nav-links a::before {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: var(--one-piece-gold);
+    height: 3px;
+    background: var(--accent-red);
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+.nav-links a:hover::before,
+.nav-links a.active::before {
     width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-red);
 }
 
 .cart-icon {
     position: relative;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    background: var(--one-piece-gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0.5rem;
+}
+
+.cart-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--ink-black);
 }
 
 .cart-count {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: var(--demon-slayer-red);
-    color: #fff;
-    font-size: 0.8rem;
+    background: var(--accent-red);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--ink-black);
 }
 
 /* ========================================
-   HERO SECTION
+   HERO SECTION - ONE PIECE THEME
    ======================================== */
+
 .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
+    justify-content: center;
     position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #4A90D9 100%);
+    border-bottom: var(--border-thick);
+    overflow: hidden;
 }
 
 .hero-content {
-    max-width: 600px;
+    text-align: center;
     z-index: 10;
+    max-width: 800px;
 }
 
-.hero-title {
+.manga-title {
+    font-family: 'Bangers', cursive;
     font-size: 4rem;
-    margin-bottom: 1rem;
-    position: relative;
-    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
 }
 
-.glitch-effect {
-    position: relative;
-    animation: glitch 3s infinite;
+.manga-title .title-line {
+    display: block;
+    animation: titleSlideIn 1s ease-out forwards;
+    opacity: 0;
 }
 
-.glitch-effect::before,
-.glitch-effect::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.manga-title .line-1 { animation-delay: 0.2s; }
+.manga-title .line-2 { animation-delay: 0.4s; font-size: 6rem; color: var(--accent-red); }
+.manga-title .line-3 { animation-delay: 0.6s; }
+
+@keyframes titleSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) skewX(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) skewX(0);
+    }
 }
 
-.glitch-effect::before {
-    animation: glitch-1 0.3s infinite;
-    color: var(--demon-slayer-red);
-    z-index: -1;
+.impact-text {
+    text-shadow: 
+        3px 3px 0px var(--ink-black),
+        -1px -1px 0px rgba(255,255,255,0.5);
+    display: inline-block;
+    animation: impactPulse 0.5s ease-in-out infinite alternate;
 }
 
-.glitch-effect::after {
-    animation: glitch-2 0.3s infinite;
-    color: var(--demon-slayer-water);
-    z-index: -2;
-}
-
-@keyframes glitch {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-}
-
-@keyframes glitch-1 {
-    0%, 100% { clip-path: inset(0 0 0 0); }
-    25% { clip-path: inset(20% 0 60% 0); }
-    50% { clip-path: inset(40% 0 40% 0); }
-    75% { clip-path: inset(60% 0 20% 0); }
-}
-
-@keyframes glitch-2 {
-    0%, 100% { clip-path: inset(0 0 0 0); }
-    25% { clip-path: inset(60% 0 20% 0); }
-    50% { clip-path: inset(40% 0 40% 0); }
-    75% { clip-path: inset(20% 0 60% 0); }
+@keyframes impactPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
     margin-bottom: 2rem;
-    color: #ccc;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
+    color: var(--ink-black);
+    background: rgba(255,255,255,0.8);
+    padding: 0.5rem 1rem;
+    border: var(--border-thin);
     display: inline-block;
 }
 
-.btn-primary {
-    background: var(--one-piece-gold);
-    color: #000;
-}
-
-.btn-primary:hover {
-    background: #f39c12;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(212, 172, 13, 0.3);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-.btn-secondary:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-3px);
-}
-
-.hero-visual {
-    position: relative;
-    width: 500px;
-    height: 500px;
-}
-
-.going-merry {
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(212, 172, 13, 0.1) 0%, transparent 70%);
-    position: relative;
-    animation: shipRock 4s ease-in-out infinite;
-}
-
-.going-merry::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 200px;
-    background: linear-gradient(45deg, #8b4513, #a0522d);
-    clip-path: polygon(30% 100%, 70% 100%, 85% 60%, 50% 20%, 15% 60%);
-    box-shadow: 0 0 50px rgba(212, 172, 13, 0.3);
-}
-
-@keyframes shipRock {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* ========================================
-   COLLECTIONS SECTION
+   MANGA STYLE BUTTONS
    ======================================== */
-.collections {
-    padding: 5rem 5%;
+
+.manga-btn {
+    position: relative;
+    padding: 1rem 2rem;
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: var(--border-thick);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.manga-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary {
+    background: var(--accent-red);
+    color: white;
+    box-shadow: var(--shadow-hard);
+}
+
+.btn-secondary {
+    background: var(--paper-white);
+    color: var(--ink-black);
+    box-shadow: var(--shadow-hard);
+}
+
+.manga-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--ink-black);
+}
+
+.manga-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--ink-black);
+}
+
+.btn-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.manga-btn:hover .btn-effect {
+    left: 100%;
+}
+
+/* ========================================
+   STRAW HAT ANIMATION
+   ======================================== */
+
+.straw-hat-container {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    animation: hatFloat 4s ease-in-out infinite;
+}
+
+.straw-hat {
+    width: 200px;
+    height: 150px;
+}
+
+.hat-svg {
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
+}
+
+@keyframes hatFloat {
+    0%, 100% { 
+        transform: translateY(0) rotate(-5deg); 
+    }
+    50% { 
+        transform: translateY(-30px) rotate(5deg); 
+    }
+}
+
+.hat-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    animation: shadowScale 4s ease-in-out infinite;
+}
+
+@keyframes shadowScale {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.2; }
+    50% { transform: translateX(-50%) scale(0.7); opacity: 0.1; }
+}
+
+/* ========================================
+   OCEAN WAVES ANIMATION
+   ======================================== */
+
+.ocean-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C150,120 300,0 450,60 C600,120 750,0 900,60 C1050,120 1200,0 1350,60 L1350,120 L0,120 Z' fill='%234A90D9'/%3E%3C/svg%3E");
+    background-size: 50% 100%;
+    opacity: 0.7;
+}
+
+.wave-1 { animation: waveMove 8s linear infinite; }
+.wave-2 { animation: waveMove 6s linear infinite reverse; opacity: 0.5; bottom: 10px; }
+.wave-3 { animation: waveMove 10s linear infinite; opacity: 0.3; bottom: 20px; }
+
+@keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ========================================
+   SHIP SILHOUETTE
+   ======================================== */
+
+.ship-silhouette {
+    position: absolute;
+    bottom: 100px;
+    left: 5%;
+    width: 300px;
+    height: 200px;
+    animation: shipRock 3s ease-in-out infinite;
+}
+
+.ship-svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes shipRock {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(2deg) translateY(-10px); }
+}
+
+/* ========================================
+   CATEGORIES SECTION
+   ======================================== */
+
+.categories {
+    padding: 5rem 2rem;
+    background: var(--paper-white);
+    border-bottom: var(--border-thick);
 }
 
 .section-title {
     text-align: center;
-    font-size: 3rem;
     margin-bottom: 3rem;
-    color: var(--one-piece-gold);
-    text-transform: uppercase;
-    letter-spacing: 3px;
 }
 
-.collection-card {
-    position: relative;
-    margin-bottom: 3rem;
-    border-radius: 15px;
-    overflow: hidden;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.collection-card:hover {
-    transform: scale(1.02);
-}
-
-.collection-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.collection-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 3rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-}
-
-.collection-content h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.collection-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #ccc;
-}
-
-/* Demon Slayer Theme */
-.demon-slayer-theme {
-    background: linear-gradient(135deg, #2c3e50, #c0392b);
-}
-
-.water-breathing-effect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: repeating-radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 20%);
-    animation: waterFlow 5s linear infinite;
-}
-
-@keyframes waterFlow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.floating-petals {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.floating-petals::before {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 100, 100, 0.6);
-    border-radius: 50% 0 50% 0;
-    animation: petalFloat 8s linear infinite;
-}
-
-@keyframes petalFloat {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-400px) rotate(360deg); opacity: 0; }
-}
-
-/* Attack on Titan Theme */
-.aot-theme {
-    background: linear-gradient(135deg, #5d4037, #27ae60);
-}
-
-.titans-shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.5) 0%, transparent 50%);
-    animation: titanApproach 10s ease-in-out infinite;
-}
-
-@keyframes titanApproach {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-.omni-directional-mobility {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.omni-directional-mobility::before,
-.omni-directional-mobility::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.3);
-    animation: grappleSwing 3s ease-in-out infinite;
-}
-
-.omni-directional-mobility::before {
-    left: 20%;
-    top: 0;
-    transform: rotate(15deg);
-}
-
-.omni-directional-mobility::after {
-    right: 20%;
-    top: 0;
-    transform: rotate(-15deg);
-    animation-delay: 1.5s;
-}
-
-@keyframes grappleSwing {
-    0%, 100% { transform: rotate(15deg); }
-    50% { transform: rotate(-15deg); }
-}
-
-/* Dragon Ball Z Theme */
-.dbz-theme {
-    background: linear-gradient(135deg, #e67e22, #f1c40f);
-}
-
-.aura-flame {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(241, 196, 15, 0.3) 0%, transparent 70%);
-    animation: auraPulse 2s ease-in-out infinite;
-}
-
-@keyframes auraPulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-.energy-blast {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.energy-blast::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, #fff, #3498db, transparent);
-    border-radius: 50%;
-    animation: energyCharge 1s ease-in-out infinite;
-}
-
-@keyframes energyCharge {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.5); }
-}
-
-/* ========================================
-   FASHION SHOWCASE - NARUTO THEME
-   ======================================== */
-.fashion-showcase {
-    padding: 5rem 5%;
-    position: relative;
-    overflow: hidden;
-}
-
-.naruto-theme-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.chakra-energy {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.2) 0%, transparent 50%);
-    animation: chakraFlow 4s ease-in-out infinite;
-}
-
-@keyframes chakraFlow {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-.shuriken-spin {
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    width: 60px;
-    height: 60px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: shurikenRotate 3s linear infinite;
-}
-
-.shuriken-spin::before {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@keyframes shurikenRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.fashion-grid {
+.category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    position: relative;
-    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.fashion-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
+.category-card {
+    position: relative;
+    padding: 3rem 2rem;
+    background: var(--manga-panel);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
     text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
     transition: all 0.3s ease;
 }
 
-.fashion-item:hover {
-    transform: translateY(-10px);
-    border-color: var(--naruto-orange);
-    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+.category-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px var(--ink-black);
 }
 
-.item-preview {
-    width: 100%;
-    height: 200px;
+.card-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid var(--ink-black);
+    pointer-events: none;
+}
+
+.category-card h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
     margin-bottom: 1rem;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
+    text-transform: uppercase;
 }
 
-.akatsuki-cloak {
-    background: linear-gradient(45deg, #000, #c0392b);
-    position: relative;
+.category-card p {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
-.akatsuki-cloak::before {
-    content: '☁';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    color: #c0392b;
+.card-link {
+    display: inline-block;
+    font-weight: 900;
+    color: var(--accent-red);
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--accent-red);
+    padding-bottom: 0.3rem;
+    transition: all 0.3s ease;
 }
 
-.leaf-symbol {
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
-    position: relative;
-}
-
-.leaf-symbol::before {
-    content: '🍃';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    color: #fff;
-}
-
-.Rasengan-glow {
-    background: radial-gradient(circle, #3498db, #2980b9);
-    position: relative;
-    animation: rasenganSpin 2s linear infinite;
-}
-
-.Rasengan-glow::before {
-    content: '◉';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    color: #fff;
-}
-
-@keyframes rasenganSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.card-link:hover {
+    color: var(--ink-black);
+    border-color: var(--ink-black);
 }
 
 /* ========================================
-   STATS SECTION
+   ANIME-SPECIFIC EFFECTS
    ======================================== */
-.stats-section {
-    padding: 5rem 5%;
-    background: rgba(255, 255, 255, 0.02);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
 
-.stat-item {
-    text-align: center;
-    padding: 2rem;
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--one-piece-gold);
-    margin-bottom: 0.5rem;
-}
-
-.stat-item p {
-    color: #ccc;
-    font-size: 1.1rem;
-}
-
-/* ========================================
-   NEWSLETTER - JJK THEME
-   ======================================== */
-.newsletter {
-    padding: 5rem 5%;
-    position: relative;
-    overflow: hidden;
-}
-
-.jjk-theme-bg {
+/* Demon Slayer - Water Breathing */
+.demon-slayer .water-breathing-effect {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    background: linear-gradient(135deg, #1a1a2e, #8e44ad);
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(74, 144, 217, 0.1) 50%, transparent 100%);
+    animation: waterExpand 3s ease-in-out infinite;
 }
 
-.cursed-energy {
+@keyframes waterExpand {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 0.8; }
+}
+
+/* Naruto - Shuriken Spin */
+.naruto .shuriken-spin::before {
+    content: '✦';
     position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem;
+    color: var(--accent-orange);
+    animation: shurikenRotate 2s linear infinite;
+}
+
+@keyframes shurikenRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* DBZ - Aura Effect */
+.dbz .aura-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    animation: auraPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes auraPulse {
+    from { opacity: 0.5; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.1); }
+}
+
+/* ========================================
+   TRENDING PRODUCTS
+   ======================================== */
+
+.trending {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--paper-white) 0%, #f0e8d8 100%);
+    border-bottom: var(--border-thick);
+}
+
+.product-scroller {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 2rem 0;
+    scroll-behavior: smooth;
+}
+
+.product-scroller::-webkit-scrollbar {
+    height: 10px;
+}
+
+.product-scroller::-webkit-scrollbar-track {
+    background: var(--ink-black);
+    border: 2px solid var(--ink-black);
+}
+
+.product-scroller::-webkit-scrollbar-thumb {
+    background: var(--accent-red);
+    border: 2px solid var(--ink-black);
+}
+
+.product-card {
+    min-width: 280px;
+    background: var(--manga-panel);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 8px 8px 0px var(--ink-black);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 1rem;
+    border: var(--border-thin);
+    overflow: hidden;
+}
+
+.placeholder-art {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(142, 68, 173, 0.3) 0%, transparent 60%);
-    animation: cursedPulse 3s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    color: rgba(0,0,0,0.3);
 }
 
-@keyframes cursedPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+.demon-slayer-art {
+    background: linear-gradient(45deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
-.domain-expansion {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    border: 2px solid rgba(142, 68, 173, 0.3);
-    border-radius: 50%;
-    animation: domainExpand 5s ease-in-out infinite;
+.one-piece-art {
+    background: linear-gradient(45deg, #D4A574 0%, #8B4513 50%, #654321 100%);
 }
 
-@keyframes domainExpand {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.6; }
+.naruto-art {
+    background: linear-gradient(45deg, #ff6b35 0%, #c41e3a 50%, #8B0000 100%);
 }
 
-.newsletter-content {
-    position: relative;
-    z-index: 10;
+.dbz-art {
+    background: linear-gradient(45deg, #ffd700 0%, #ffa500 50%, #ff6b35 100%);
+}
+
+.product-card h4 {
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.anime-source {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--ink-black);
+    color: white;
+    border: none;
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background: var(--accent-red);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+}
+
+/* ========================================
+   NEWSLETTER SECTION
+   ======================================== */
+
+.newsletter {
+    padding: 5rem 2rem;
+    background: var(--ink-black);
+    color: var(--paper-white);
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
+    border-bottom: var(--border-thick);
+    position: relative;
 }
 
 .newsletter-content h2 {
-    font-size: 2.5rem;
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--jjk-purple);
+    color: var(--accent-yellow);
 }
 
 .newsletter-form {
     display: flex;
     gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 2rem;
 }
 
 .newsletter-form input {
-    flex: 1;
-    padding: 1rem;
-    border: 2px solid var(--jjk-purple);
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    padding: 1rem 2rem;
     font-size: 1rem;
+    border: 3px solid var(--paper-white);
+    background: var(--paper-white);
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 700;
+    min-width: 300px;
 }
 
-.newsletter-form input:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+.newsletter-form input::placeholder {
+    color: #666;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 50px;
+    border: 3px solid var(--paper-white);
+    border-radius: 20px;
+    position: relative;
+}
+
+.scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 10px;
+    background: var(--paper-white);
+    border-radius: 3px;
+    animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+    0%, 100% { opacity: 0; top: 10px; }
+    50% { opacity: 1; top: 25px; }
 }
 
 /* ========================================
    FOOTER
    ======================================== */
-footer {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 3rem 5% 1rem;
-    border-top: 2px solid var(--one-piece-gold);
+
+.manga-footer {
+    background: var(--manga-panel);
+    border-top: var(--border-thick);
+    padding: 3rem 2rem 1rem;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
 }
 
-.footer-section h3,
-.footer-section h4 {
+.footer-section h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: var(--one-piece-gold);
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 .footer-section ul {
@@ -858,13 +829,14 @@ footer {
 }
 
 .footer-section a {
-    color: #ccc;
+    color: var(--ink-black);
     text-decoration: none;
+    font-weight: 700;
     transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
-    color: var(--one-piece-gold);
+    color: var(--accent-red);
 }
 
 .social-links {
@@ -873,1258 +845,88 @@ footer {
 }
 
 .social-icon {
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    border: var(--border-thick);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--ink-black);
     transition: all 0.3s ease;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
 }
 
 .social-icon:hover {
-    background: var(--one-piece-gold);
-    color: #000;
+    background: var(--accent-red);
+    color: white;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--ink-black);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #666;
+    border-top: var(--border-thin);
+    font-weight: 700;
 }
 
-/* Responsive Design */
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
 @media (max-width: 768px) {
-    .hero {
+    .manga-nav {
         flex-direction: column;
-        text-align: center;
-        padding-top: 100px;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
+        gap: 1rem;
     }
 
     .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .manga-title {
+        font-size: 2.5rem;
+    }
+
+    .manga-title .line-2 {
+        font-size: 4rem;
+    }
+
+    .straw-hat-container {
+        top: 10%;
+        right: 5%;
+        transform: scale(0.7);
+    }
+
+    .ship-silhouette {
         display: none;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-scroller {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 350px;
     }
 
     .newsletter-form {
         flex-direction: column;
+        align-items: center;
     }
-}
 
-/* ========================================
-   PAGE HERO SECTIONS
-   ======================================== */
-.page-hero {
-    padding: 150px 5% 50px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.page-hero.fashion-hero {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.filter-btn {
-    padding: 0.8rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background: var(--one-piece-gold);
-    border-color: var(--one-piece-gold);
-    color: #000;
-    transform: translateY(-3px);
-}
-
-/* ========================================
-   PRODUCTS SECTION
-   ======================================== */
-.products-section {
-    padding: 3rem 5%;
-    position: relative;
-    z-index: 10;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.product-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--one-piece-gold);
-    box-shadow: 0 20px 40px rgba(212, 172, 13, 0.2);
-}
-
-.product-image {
-    height: 300px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Product Image Placeholders with Anime Themes */
-.tanjiro-figure {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-    position: relative;
-}
-
-.tanjiro-figure::before {
-    content: '⚔️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.nezuko-figure {
-    background: linear-gradient(135deg, #ff9ff3, #f368e0);
-    position: relative;
-}
-
-.nezuko-figure::before {
-    content: '🌸';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.rengoku-figure {
-    background: linear-gradient(135deg, #e74c3c, #f39c12);
-    position: relative;
-}
-
-.rengoku-figure::before {
-    content: '🔥';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.luffy-gear5 {
-    background: linear-gradient(135deg, #fff, #f39c12);
-    position: relative;
-}
-
-.luffy-gear5::before {
-    content: '☁️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.zoro-figure {
-    background: linear-gradient(135deg, #27ae60, #16a085);
-    position: relative;
-}
-
-.zoro-figure::before {
-    content: '🗡️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.naruto-sage {
-    background: linear-gradient(135deg, #ff6b35, #f1c40f);
-    position: relative;
-}
-
-.naruto-sage::before {
-    content: '🌀';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.sasuke-rinnegan {
-    background: linear-gradient(135deg, #8e44ad, #2c3e50);
-    position: relative;
-}
-
-.sasuke-rinnegan::before {
-    content: '👁️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.goku-ultra {
-    background: linear-gradient(135deg, #bdc3c7, #f1c40f);
-    position: relative;
-}
-
-.goku-ultra::before {
-    content: '⚡';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.vegeta-blue {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    position: relative;
-}
-
-.vegeta-blue::before {
-    content: '💙';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.eren-titan {
-    background: linear-gradient(135deg, #5d4037, #c0392b);
-    position: relative;
-}
-
-.eren-titan::before {
-    content: '👹';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.levi-ackerman {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    position: relative;
-}
-
-.levi-ackerman::before {
-    content: '🌀';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.gojo-domain {
-    background: linear-gradient(135deg, #8e44ad, #2c3e50);
-    position: relative;
-}
-
-.gojo-domain::before {
-    content: '∞';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.sukuna-figure {
-    background: linear-gradient(135deg, #c0392b, #1a1a2e);
-    position: relative;
-}
-
-.sukuna-figure::before {
-    content: '👿';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-/* Fashion Product Images */
-.akatsuki-cloak-premium {
-    background: linear-gradient(45deg, #000, #c0392b);
-    position: relative;
-}
-
-.akatsuki-cloak-premium::before {
-    content: '☁️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-    color: #c0392b;
-}
-
-.leaf-jacket {
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
-    position: relative;
-}
-
-.leaf-jacket::before {
-    content: '🍃';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.headband-collection {
-    background: linear-gradient(45deg, #34495e, #bdc3c7);
-    position: relative;
-}
-
-.headband-collection::before {
-    content: '🎯';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.straw-hat-replica {
-    background: linear-gradient(45deg, #f1c40f, #e67e22);
-    position: relative;
-}
-
-.straw-hat-replica::before {
-    content: '🎩';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.marine-coat {
-    background: linear-gradient(45deg, #ecf0f1, #3498db);
-    position: relative;
-}
-
-.marine-coat::before {
-    content: '⚖️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.pirate-bandana {
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
-    position: relative;
-}
-
-.pirate-bandana::before {
-    content: '🏴‍☠️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.tanjiro-haori {
-    background: repeating-linear-gradient(45deg, #27ae60, #27ae60 10px, #000 10px, #000 20px);
-    position: relative;
-}
-
-.tanjiro-haori::before {
-    content: '👘';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.nezuko-kimono {
-    background: linear-gradient(45deg, #ff9ff3, #fd79a8);
-    position: relative;
-}
-
-.nezuko-kimono::before {
-    content: '🎀';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.hashira-uniform {
-    background: linear-gradient(45deg, #2c3e50, #8e44ad);
-    position: relative;
-}
-
-.hashira-uniform::before {
-    content: '⚔️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.gojo-blindfold {
-    background: linear-gradient(45deg, #000, #2c3e50);
-    position: relative;
-}
-
-.gojo-blindfold::before {
-    content: '👁️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.jujutsu-uniform {
-    background: linear-gradient(45deg, #2c3e50, #34495e);
-    position: relative;
-}
-
-.jujutsu-uniform::before {
-    content: '🎓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.sukuna-finger-case {
-    background: linear-gradient(45deg, #8b4513, #c0392b);
-    position: relative;
-}
-
-.sukuna-finger-case::before {
-    content: '💍';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.anime-hoodie {
-    background: linear-gradient(45deg, #1a1a2e, #e74c3c);
-    position: relative;
-}
-
-.anime-hoodie::before {
-    content: '👕';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.katanasneakers {
-    background: linear-gradient(45deg, #bdc3c7, #e74c3c);
-    position: relative;
-}
-
-.katanasneakers::before {
-    content: '👟';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.ramen-bowl-shirt {
-    background: linear-gradient(45deg, #f39c12, #e74c3c);
-    position: relative;
-}
-
-.ramen-bowl-shirt::before {
-    content: '🍜';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-}
-
-.product-info {
-    padding: 1.5rem;
-}
-
-.product-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-
-.product-series {
-    color: var(--one-piece-gold);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.product-description {
-    color: #ccc;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-.product-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--one-piece-gold);
-    margin-bottom: 1rem;
-}
-
-.product-info .btn {
-    width: 100%;
-}
-
-/* ========================================
-   ABOUT PAGE STYLES
-   ======================================== */
-.about-content {
-    padding: 3rem 5%;
-    position: relative;
-    z-index: 10;
-}
-
-.story-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 5rem;
-    align-items: center;
-}
-
-.story-image {
-    height: 400px;
-    background: linear-gradient(135deg, var(--one-piece-gold), var(--dbz-orange));
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-}
-
-.story-image::before {
-    content: '🏪';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 10rem;
-}
-
-.story-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--one-piece-gold);
-}
-
-.story-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #ccc;
-    margin-bottom: 1rem;
-}
-
-.values-section {
-    margin-bottom: 5rem;
-}
-
-.values-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--one-piece-gold);
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.value-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.value-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--one-piece-gold);
-}
-
-.value-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    background: var(--one-piece-gold);
-    position: relative;
-}
-
-.value-icon.authenticity::before {
-    content: '✓';
-    font-size: 3rem;
-    color: #000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.value-icon.quality::before {
-    content: '⭐';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.value-icon.community::before {
-    content: '👥';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.value-icon.shipping::before {
-    content: '📦';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.value-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--one-piece-gold);
-}
-
-.value-card p {
-    color: #ccc;
-    line-height: 1.6;
-}
-
-.team-section {
-    margin-bottom: 5rem;
-}
-
-.team-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--one-piece-gold);
-}
-
-.section-intro {
-    text-align: center;
-    color: #ccc;
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.team-member {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.member-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, var(--one-piece-gold), var(--dbz-orange));
-    position: relative;
-}
-
-.member-avatar.ceo::before {
-    content: '👔';
-    font-size: 4rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.member-avatar.curator::before {
-    content: '🎨';
-    font-size: 4rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.member-avatar.fashion::before {
-    content: '👗';
-    font-size: 4rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.member-avatar.support::before {
-    content: '🎧';
-    font-size: 4rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.team-member h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.member-role {
-    color: var(--one-piece-gold);
-    margin-bottom: 1rem;
-}
-
-.member-bio {
-    color: #ccc;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.faq-section {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--one-piece-gold);
-}
-
-.faq-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.faq-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.faq-question {
-    padding: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s ease;
-}
-
-.faq-question:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.faq-question h3 {
-    font-size: 1.1rem;
-    color: #fff;
-}
-
-.faq-toggle {
-    font-size: 1.5rem;
-    color: var(--one-piece-gold);
-    transition: transform 0.3s ease;
-}
-
-.faq-question.active .faq-toggle {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.faq-answer p {
-    padding: 0 1.5rem 1.5rem;
-    color: #ccc;
-    line-height: 1.6;
-}
-
-/* ========================================
-   CONTACT PAGE STYLES
-   ======================================== */
-.contact-section {
-    padding: 3rem 5%;
-    position: relative;
-    z-index: 10;
-}
-
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 5rem;
-}
-
-.contact-form-wrapper {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2.5rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-form-wrapper h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--one-piece-gold);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--one-piece-gold);
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-.contact-info h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--one-piece-gold);
-}
-
-.info-card {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.info-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--one-piece-gold);
-    flex-shrink: 0;
-    position: relative;
-}
-
-.info-icon.email::before {
-    content: '✉️';
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.info-icon.phone::before {
-    content: '📞';
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.info-icon.location::before {
-    content: '📍';
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.info-icon.hours::before {
-    content: '🕐';
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.info-content h3 {
-    color: var(--one-piece-gold);
-    margin-bottom: 0.5rem;
-}
-
-.info-content p {
-    color: #ccc;
-    line-height: 1.6;
-}
-
-.social-media-section {
-    margin-top: 3rem;
-}
-
-.social-media-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    color: var(--one-piece-gold);
-}
-
-.social-links-large {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.social-link {
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    transform: translateY(-5px);
-    border-color: var(--one-piece-gold);
-}
-
-.social-link span {
-    display: block;
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.social-link p {
-    color: #ccc;
-    font-size: 0.9rem;
-}
-
-.map-section {
-    margin-bottom: 5rem;
-}
-
-.map-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--one-piece-gold);
-}
-
-.map-placeholder {
-    height: 400px;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.map-pin {
-    width: 60px;
-    height: 60px;
-    background: var(--one-piece-gold);
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    margin-bottom: 2rem;
-    animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: rotate(-45deg) translateY(0); }
-    50% { transform: rotate(-45deg) translateY(-20px); }
-}
-
-.map-placeholder p {
-    color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.map-note {
-    color: var(--one-piece-gold) !important;
-    font-style: italic;
-}
-
-.support-team {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.support-team h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--one-piece-gold);
-}
-
-.support-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.support-agent {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.agent-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, var(--jjk-purple), var(--naruto-orange));
-    position: relative;
-}
-
-.agent-avatar.agent1::before {
-    content: '👩‍💼';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.agent-avatar.agent2::before {
-    content: '👨‍💼';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.agent-avatar.agent3::before {
-    content: '👩‍🔧';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.agent-avatar.agent4::before {
-    content: '👨‍🔧';
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.support-agent h3 {
-    margin-bottom: 0.5rem;
-}
-
-.agent-specialty {
-    color: var(--one-piece-gold);
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-
-.agent-status {
-    font-size: 0.9rem;
-}
-
-.agent-status.online {
-    color: #27ae60;
-}
-
-.agent-status.away {
-    color: #f39c12;
-}
-
-/* Additional Background Themes */
-.demon-slayer-bg {
-    background: linear-gradient(135deg, #2c3e50, #c0392b, #3498db);
-}
-
-.naruto-fashion-bg {
-    background: linear-gradient(135deg, #ff6b35, #4a90e2, #27ae60);
-}
-
-.aot-about-bg {
-    background: linear-gradient(135deg, #5d4037, #27ae60, #2c3e50);
-}
-
-.jjk-contact-bg {
-    background: linear-gradient(135deg, #1a1a2e, #8e44ad, #c0392b);
-}
-
-.katana-slash {
-    position: absolute;
-    width: 3px;
-    height: 200px;
-    background: linear-gradient(to bottom, transparent, #3498db, transparent);
-    top: 20%;
-    left: 30%;
-    transform: rotate(45deg);
-    animation: slash 3s ease-in-out infinite;
-}
-
-@keyframes slash {
-    0%, 100% { opacity: 0; transform: rotate(45deg) translateY(0); }
-    50% { opacity: 1; transform: rotate(45deg) translateY(-50px); }
-}
-
-.wall-maria {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 150px;
-    background: repeating-linear-gradient(90deg, #5d4037, #5d4037 50px, #4a352a 50px, #4a352a 100px);
-    opacity: 0.5;
-}
-
-.kunai-floating {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #bdc3c7, #7f8c8d);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    top: 30%;
-    right: 20%;
-    animation: kunaiSpin 5s linear infinite;
-}
-
-@keyframes kunaiSpin {
-    0% { transform: rotate(0deg) translateY(0); }
-    50% { transform: rotate(180deg) translateY(-30px); }
-    100% { transform: rotate(360deg) translateY(0); }
-}
-
-.cursed-symbols {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(142, 68, 173, 0.2) 2px, transparent 2px),
-        radial-gradient(circle at 80% 70%, rgba(142, 68, 173, 0.2) 2px, transparent 2px);
-    background-size: 100px 100px;
-    animation: symbolsFloat 10s linear infinite;
-}
-
-@keyframes symbolsFloat {
-    0% { background-position: 0 0; }
-    100% { background-position: 100px 100px; }
-}
-
-/* Pulse animation for cart */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-/* Fade in animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    .newsletter-form input {
+        width: 100%;
+        max-width: 300px;
+    }
 }

@@ -3,214 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Anime Figures - AniCollect</title>
+    <title>Figures Catalog - AniCollect</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=M+PLUS+1p:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Demon Slayer Theme for Figures Page */
+        .figures-hero {
+            min-height: 60vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid #1a1a1a;
+        }
+
+        .water-breathing-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(74, 144, 217, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(74, 144, 217, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(74, 144, 217, 0.2) 0%, transparent 50%);
+            animation: waterFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .cherry-blossom-tree {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 200px;
+            height: 300px;
+            opacity: 0.6;
+        }
+
+        .katana-slash {
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 200%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #4a90d9, #fff, #4a90d9, transparent);
+            animation: katanaSlash 4s ease-in-out infinite;
+        }
+
+        @keyframes katanaSlash {
+            0% { left: -100%; transform: rotate(-10deg); }
+            50% { left: 100%; transform: rotate(-10deg); }
+            51% { left: -100%; transform: rotate(10deg); }
+            100% { left: 100%; transform: rotate(10deg); }
+        }
+
+        .figures-title {
+            z-index: 10;
+            text-align: center;
+        }
+
+        .filter-section {
+            padding: 3rem 2rem;
+            background: #f5f1e8;
+            border-bottom: 3px solid #1a1a1a;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: #fffef9;
+            border: 3px solid #1a1a1a;
+            font-family: 'M PLUS 1p', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 0px #1a1a1a;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #c41e3a;
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #1a1a1a;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            min-width: auto;
+        }
+
+        .figure-exclusive-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 0.5rem 1rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            border: 2px solid #1a1a1a;
+            transform: rotate(10deg);
+            z-index: 5;
+        }
+    </style>
 </head>
 <body>
-    <!-- Demon Slayer Theme Background -->
-    <div class="anime-bg demon-slayer-bg">
-        <div class="water-breathing-effect"></div>
-        <div class="floating-petals"></div>
-        <div class="katana-slash"></div>
+    <!-- Manga Panel Background -->
+    <div class="manga-bg">
+        <div class="panel panel-1"></div>
+        <div class="panel panel-2"></div>
+        <div class="panel panel-3"></div>
+        <div class="speed-lines"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="manga-nav">
         <div class="logo">
-            <span class="logo-text">Ani<span class="highlight">Collect</span></span>
+            <span class="logo-text">ANI<span class="accent">COLLECT</span></span>
+            <div class="logo-splash"></div>
         </div>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="figures.html" class="active">Figures</a></li>
-            <li><a href="fashion.html">Fashion</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="../index.html">HOME</a></li>
+            <li><a href="figures.html" class="active">FIGURES</a></li>
+            <li><a href="fashion.html">FASHION</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
         </ul>
         <div class="cart-icon">
             <span class="cart-count">0</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="page-hero">
-        <h1 class="hero-title glitch-effect" data-text="LEGENDARY FIGURES">LEGENDARY FIGURES</h1>
-        <p class="hero-subtitle">Premium collectibles from your favorite anime series</p>
+    <!-- Hero Section - Demon Slayer Theme -->
+    <section class="figures-hero">
+        <div class="water-breathing-bg"></div>
+        <div class="katana-slash"></div>
         
-        <!-- Filter Buttons -->
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Series</button>
-            <button class="filter-btn" data-filter="demon-slayer">Demon Slayer</button>
-            <button class="filter-btn" data-filter="one-piece">One Piece</button>
-            <button class="filter-btn" data-filter="naruto">Naruto</button>
-            <button class="filter-btn" data-filter="dbz">Dragon Ball Z</button>
-            <button class="filter-btn" data-filter="aot">Attack on Titan</button>
-            <button class="filter-btn" data-filter="jjk">Jujutsu Kaisen</button>
+        <div class="figures-title">
+            <h1 class="manga-title">
+                <span class="title-line line-1">PREMIUM</span>
+                <span class="title-line line-2 impact-text">ACTION FIGURES</span>
+                <span class="title-line line-3">COLLECTION</span>
+            </h1>
+            <p class="hero-subtitle">Demon Slayer • One Piece • Naruto • Dragon Ball Z • Attack on Titan</p>
+        </div>
+
+        <!-- Cherry Blossom Tree SVG -->
+        <svg class="cherry-blossom-tree" viewBox="0 0 200 300">
+            <path d="M 100 300 Q 100 200 80 150 Q 60 100 50 80" stroke="#4a3728" stroke-width="8" fill="none"/>
+            <path d="M 100 300 Q 100 200 120 150 Q 140 100 150 80" stroke="#4a3728" stroke-width="8" fill="none"/>
+            <path d="M 80 150 Q 60 130 40 120" stroke="#4a3728" stroke-width="6" fill="none"/>
+            <path d="M 120 150 Q 140 130 160 120" stroke="#4a3728" stroke-width="6" fill="none"/>
+            <circle cx="50" cy="80" r="5" fill="#ffb7c5" opacity="0.8"/>
+            <circle cx="60" cy="90" r="4" fill="#ffb7c5" opacity="0.8"/>
+            <circle cx="40" cy="100" r="5" fill="#ffb7c5" opacity="0.8"/>
+            <circle cx="150" cy="80" r="5" fill="#ffb7c5" opacity="0.8"/>
+            <circle cx="160" cy="90" r="4" fill="#ffb7c5" opacity="0.8"/>
+            <circle cx="140" cy="100" r="5" fill="#ffb7c5" opacity="0.8"/>
+        </svg>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="demon-slayer">DEMON SLAYER</button>
+            <button class="filter-btn" data-filter="one-piece">ONE PIECE</button>
+            <button class="filter-btn" data-filter="naruto">NARUTO</button>
+            <button class="filter-btn" data-filter="dbz">DRAGON BALL Z</button>
+            <button class="filter-btn" data-filter="attack-titan">ATTACK ON TITAN</button>
         </div>
     </section>
 
     <!-- Products Grid -->
-    <section class="products-section">
-        <div class="products-grid">
-            <!-- Demon Slayer Products -->
-            <div class="product-card" data-category="demon-slayer" id="demon-slayer">
-                <div class="product-image tanjiro-figure"></div>
-                <div class="product-info">
-                    <h3>Tanjiro Kamado - Water Breathing</h3>
-                    <p class="product-series">Demon Slayer</p>
-                    <p class="product-description">1/7 scale figure with water breathing effect base</p>
-                    <div class="product-price">$189.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+    <section class="products-grid">
+        <div class="product-card" data-category="demon-slayer">
+            <div class="figure-exclusive-badge">EXCLUSIVE</div>
+            <div class="product-image">
+                <div class="placeholder-art demon-slayer-art"></div>
             </div>
+            <h4>Tanjiro Kamado</h4>
+            <p class="anime-source">Demon Slayer</p>
+            <p class="price">$89.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <div class="product-card" data-category="demon-slayer">
-                <div class="product-image nezuko-figure"></div>
-                <div class="product-info">
-                    <h3>Nezuko Kamado - Bamboo Ver.</h3>
-                    <p class="product-series">Demon Slayer</p>
-                    <p class="product-description">Limited edition with cherry blossom effects</p>
-                    <div class="product-price">$219.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="one-piece">
+            <div class="product-image">
+                <div class="placeholder-art one-piece-art"></div>
             </div>
+            <h4>Luffy Gear 5</h4>
+            <p class="anime-source">One Piece</p>
+            <p class="price">$129.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <div class="product-card" data-category="demon-slayer">
-                <div class="product-image rengoku-figure"></div>
-                <div class="product-info">
-                    <h3>Kyojuro Rengoku - Flame Hashira</h3>
-                    <p class="product-series">Demon Slayer</p>
-                    <p class="product-description">Flame breathing attack pose with LED effects</p>
-                    <div class="product-price">$249.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="naruto">
+            <div class="figure-exclusive-badge">LIMITED</div>
+            <div class="product-image">
+                <div class="placeholder-art naruto-art"></div>
             </div>
+            <h4>Naruto Sage Mode</h4>
+            <p class="anime-source">Naruto</p>
+            <p class="price">$99.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <!-- One Piece Products -->
-            <div class="product-card" data-category="one-piece">
-                <div class="product-image luffy-gear5"></div>
-                <div class="product-info">
-                    <h3>Monkey D. Luffy - Gear 5</h3>
-                    <p class="product-series">One Piece</p>
-                    <p class="product-description">Sun God Nika transformation with cloud effects</p>
-                    <div class="product-price">$299.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="dbz">
+            <div class="product-image">
+                <div class="placeholder-art dbz-art"></div>
             </div>
+            <h4>Goku Ultra Instinct</h4>
+            <p class="anime-source">Dragon Ball Z</p>
+            <p class="price">$149.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <div class="product-card" data-category="one-piece">
-                <div class="product-image zoro-figure"></div>
-                <div class="product-info">
-                    <h3>Roronoa Zoro - King of Hell</h3>
-                    <p class="product-series">One Piece</p>
-                    <p class="product-description">Three sword style with Asura aura effect</p>
-                    <div class="product-price">$229.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="demon-slayer">
+            <div class="product-image">
+                <div class="placeholder-art demon-slayer-art"></div>
             </div>
+            <h4>Nezuko Kamado</h4>
+            <p class="anime-source">Demon Slayer</p>
+            <p class="price">$84.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <!-- Naruto Products -->
-            <div class="product-card" data-category="naruto">
-                <div class="product-image naruto-sage"></div>
-                <div class="product-info">
-                    <h3>Naruto Uzumaki - Sage Mode</h3>
-                    <p class="product-series">Naruto</p>
-                    <p class="product-description">Sage mode with rasengan effect part</p>
-                    <div class="product-price">$179.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="attack-titan">
+            <div class="figure-exclusive-badge">RARE</div>
+            <div class="product-image">
+                <div class="placeholder-art" style="background: linear-gradient(45deg, #2d5016 0%, #1a3009 50%, #0f1a05 100%);"></div>
             </div>
+            <h4>Eren Yeager Titan</h4>
+            <p class="anime-source">Attack on Titan</p>
+            <p class="price">$159.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <div class="product-card" data-category="naruto">
-                <div class="product-image sasuke-rinnegan"></div>
-                <div class="product-info">
-                    <h3>Sasuke Uchiha - Rinnegan</h3>
-                    <p class="product-series">Naruto</p>
-                    <p class="product-description">Eternal Mangekyou Sharingan with Susanoo</p>
-                    <div class="product-price">$259.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="one-piece">
+            <div class="product-image">
+                <div class="placeholder-art one-piece-art"></div>
             </div>
+            <h4>Zoro Roronoa</h4>
+            <p class="anime-source">One Piece</p>
+            <p class="price">$94.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
+        </div>
 
-            <!-- Dragon Ball Z Products -->
-            <div class="product-card" data-category="dbz" id="dbz">
-                <div class="product-image goku-ultra"></div>
-                <div class="product-info">
-                    <h3>Goku - Ultra Instinct</h3>
-                    <p class="product-series">Dragon Ball Super</p>
-                    <p class="product-description">Silver hair transformation with aura effects</p>
-                    <div class="product-price">$349.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
+        <div class="product-card" data-category="dbz">
+            <div class="figure-exclusive-badge">EXCLUSIVE</div>
+            <div class="product-image">
+                <div class="placeholder-art dbz-art"></div>
             </div>
-
-            <div class="product-card" data-category="dbz">
-                <div class="product-image vegeta-blue"></div>
-                <div class="product-info">
-                    <h3>Vegeta - Super Saiyan Blue</h3>
-                    <p class="product-series">Dragon Ball Super</p>
-                    <p class="product-description">Final Flash attack pose with energy effects</p>
-                    <div class="product-price">$279.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Attack on Titan Products -->
-            <div class="product-card" data-category="aot" id="aot">
-                <div class="product-image eren-titan"></div>
-                <div class="product-info">
-                    <h3>Eren Yeager - Attack Titan</h3>
-                    <p class="product-series">Attack on Titan</p>
-                    <p class="product-description">Titan form with steam effects base</p>
-                    <div class="product-price">$399.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="aot">
-                <div class="product-image levi-ackerman"></div>
-                <div class="product-info">
-                    <h3>Levi Ackerman - Captain</h3>
-                    <p class="product-series">Attack on Titan</p>
-                    <p class="product-description">ODM gear in action pose with blades</p>
-                    <div class="product-price">$199.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Jujutsu Kaisen Products -->
-            <div class="product-card" data-category="jjk">
-                <div class="product-image gojo-domain"></div>
-                <div class="product-info">
-                    <h3>Satoru Gojo - Domain Expansion</h3>
-                    <p class="product-series">Jujutsu Kaisen</p>
-                    <p class="product-description">Unlimited Void with cursed energy effects</p>
-                    <div class="product-price">$329.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="jjk">
-                <div class="product-image sukuna-figure"></div>
-                <div class="product-info">
-                    <h3>Ryomen Sukuna - King of Curses</h3>
-                    <p class="product-series">Jujutsu Kaisen</p>
-                    <p class="product-description">Four-armed form with shrine domain</p>
-                    <div class="product-price">$369.99</div>
-                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+            <h4>Vegeta SS Blue</h4>
+            <p class="anime-source">Dragon Ball Z</p>
+            <p class="price">$139.99</p>
+            <button class="add-to-cart">ADD TO CART</button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="manga-footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>AniCollect</h3>
-                <p>Your ultimate destination for premium anime collectibles and fashion</p>
+                <h3>ANI<span class="accent">COLLECT</span></h3>
+                <p>Your ultimate destination for premium anime collectibles and fashion.</p>
             </div>
             <div class="footer-section">
-                <h4>Quick Links</h4>
+                <h4>QUICK LINKS</h4>
                 <ul>
                     <li><a href="figures.html">Figures</a></li>
                     <li><a href="fashion.html">Fashion</a></li>
@@ -219,11 +307,12 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Follow Us</h4>
+                <h4>FOLLOW US</h4>
                 <div class="social-links">
-                    <a href="#" class="social-icon">Twitter</a>
-                    <a href="#" class="social-icon">Instagram</a>
-                    <a href="#" class="social-icon">Discord</a>
+                    <a href="#" class="social-icon">TW</a>
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">YT</a>
+                    <a href="#" class="social-icon">DC</a>
                 </div>
             </div>
         </div>
@@ -233,5 +322,39 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
