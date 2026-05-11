@@ -1,88 +1,713 @@
-/* ========================================
-   ANICOLLECT - MANGA/ANIME STYLE CSS
-   Hand-drawn aesthetic, no emojis
-   ======================================== */
-
-:root {
-    --ink-black: #1a1a1a;
-    --paper-white: #f5f1e8;
-    --manga-panel: #fffef9;
-    --accent-red: #c41e3a;
-    --accent-orange: #ff6b35;
-    --accent-yellow: #ffd700;
-    --accent-blue: #4a90d9;
-    --accent-green: #2d5016;
-    --border-thick: 3px solid var(--ink-black);
-    --border-thin: 1px solid var(--ink-black);
-    --shadow-hard: 4px 4px 0px var(--ink-black);
-    --shadow-soft: 2px 2px 0px rgba(0,0,0,0.2);
-}
-
+/* ===== RESET & BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --onepiece-primary: #D32F2F;
+    --onepiece-secondary: #FFD700;
+    --naruto-primary: #FF6B00;
+    --naruto-secondary: #1a1a2e;
+    --dragonball-primary: #FF9500;
+    --dragonball-secondary: #FF4500;
+    --demonslayer-primary: #4A90E2;
+    --demonslayer-secondary: #FF69B4;
+    --aot-primary: #8B4513;
+    --aot-secondary: #DEB887;
+    --jjk-primary: #9B59B6;
+    --jjk-secondary: #2C3E50;
+    --manga-black: #1a1a1a;
+    --manga-white: #f5f5f5;
+    --border-thick: 3px solid var(--manga-black);
+    --shadow-hard: 4px 4px 0px var(--manga-black);
+    --shadow-soft: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 body {
-    font-family: 'M PLUS 1p', sans-serif;
-    background-color: var(--paper-white);
-    color: var(--ink-black);
+    font-family: 'Manga Temple', 'Bangers', cursive, sans-serif;
+    background: var(--manga-white);
+    color: var(--manga-black);
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* ========================================
-   MANGA BACKGROUND EFFECTS
-   ======================================== */
-
-.manga-bg {
+/* ===== LOADING SCREEN ===== */
+#loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* One Piece Loader */
+.loader-onepiece {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loader-onepiece.active {
+    display: flex;
+}
+
+.ocean-waves {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
     overflow: hidden;
 }
 
-.panel {
+.wave {
     position: absolute;
-    border: var(--border-thick);
-    background: var(--manga-panel);
-    opacity: 0.5;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320'%3E%3Cpath d='M0,160 C150,280 300,40 450,160 C600,280 750,40 900,160 C1050,280 1200,40 1350,160 L1350,320 L0,320 Z' fill='%234169E1' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 50% 100%;
+    animation: wave-move 3s ease-in-out infinite;
 }
 
-.panel-1 {
-    top: 10%;
-    left: 5%;
+.wave1 { animation-delay: 0s; opacity: 0.8; }
+.wave2 { animation-delay: -1s; opacity: 0.6; }
+.wave3 { animation-delay: -2s; opacity: 0.4; }
+
+@keyframes wave-move {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(-25%) translateY(-10px); }
+}
+
+.thousand-sunny {
+    position: relative;
     width: 300px;
-    height: 400px;
-    transform: rotate(-5deg);
-    animation: floatPanel 8s ease-in-out infinite;
+    height: 200px;
+    animation: ship-rock 2s ease-in-out infinite;
 }
 
-.panel-2 {
-    top: 60%;
-    right: 10%;
-    width: 250px;
-    height: 350px;
-    transform: rotate(3deg);
-    animation: floatPanel 10s ease-in-out infinite reverse;
+.sunny-ship {
+    width: 100%;
+    height: 100%;
 }
 
-.panel-3 {
-    bottom: 5%;
-    left: 15%;
-    width: 200px;
+.sail {
+    animation: sail-flutter 1s ease-in-out infinite alternate;
+    transform-origin: left center;
+}
+
+.sun-logo {
+    animation: sun-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ship-rock {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-10px); }
+}
+
+@keyframes sail-flutter {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(1.05); }
+}
+
+@keyframes sun-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 20px #FFD700; }
+    50% { transform: scale(1.1); box-shadow: 0 0 40px #FFD700; }
+}
+
+/* Dragon Ball Z Loader */
+.loader-dbz {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
+}
+
+.loader-dbz.active {
+    display: flex;
+}
+
+.energy-aura {
+    position: relative;
+    width: 300px;
     height: 300px;
-    transform: rotate(-2deg);
-    animation: floatPanel 12s ease-in-out infinite;
 }
 
-@keyframes floatPanel {
+.aura-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #FFD700;
+    animation: aura-expand 2s ease-out infinite;
+}
+
+.ring1 {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation-delay: 0s;
+}
+
+.ring2 {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    animation-delay: -0.5s;
+    border-color: #FFF;
+}
+
+.ring3 {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    animation-delay: -1s;
+    border-color: #FF6B00;
+}
+
+@keyframes aura-expand {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.dragon-balls {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.db {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #FF6B00, #FF4500);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFD700;
+    font-size: 20px;
+    box-shadow: 0 0 20px #FFD700;
+    animation: db-float 3s ease-in-out infinite;
+}
+
+.db1 { top: 0%; left: 50%; animation-delay: 0s; }
+.db2 { top: 14%; right: 10%; animation-delay: -0.5s; }
+.db3 { top: 50%; right: 0%; animation-delay: -1s; }
+.db4 { bottom: 14%; right: 10%; animation-delay: -1.5s; }
+.db5 { bottom: 0%; left: 50%; animation-delay: -2s; }
+.db6 { bottom: 14%; left: 10%; animation-delay: -2.5s; }
+.db7 { top: 50%; left: 0%; animation-delay: -3s; }
+
+@keyframes db-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+/* Naruto Loader */
+.loader-naruto {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a2e 0%, #FF6B00 100%);
+}
+
+.loader-naruto.active {
+    display: flex;
+}
+
+.rasengan {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.rasen-core {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #FFF, #4A90E2);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px #4A90E2, 0 0 80px #FFF;
+    animation: core-pulse 0.5s ease-in-out infinite alternate;
+}
+
+.rasen-spin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #4A90E2;
+    border-radius: 50%;
+    animation: rasen-rotate 1s linear infinite;
+}
+
+.spin1 { animation-delay: 0s; border-top-color: transparent; }
+.spin2 { animation-delay: -0.3s; border-right-color: transparent; }
+.spin3 { animation-delay: -0.6s; border-bottom-color: transparent; }
+
+@keyframes core-pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes rasen-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.konoha-symbol {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: symbol-pulse 2s ease-in-out infinite;
+}
+
+@keyframes symbol-pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Demon Slayer Loader */
+.loader-demonslayer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a2e 0%, #4A90E2 50%, #FF69B4 100%);
+}
+
+.loader-demonslayer.active {
+    display: flex;
+}
+
+.water-breathing {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.water-drop {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #FFF, #4A90E2);
+    border-radius: 50% 50% 50% 0;
+    animation: drop-fall 2s ease-in-out infinite;
+}
+
+.drop1 { top: 0%; left: 50%; animation-delay: 0s; }
+.drop2 { top: 25%; right: 10%; animation-delay: -0.5s; }
+.drop3 { bottom: 25%; left: 10%; animation-delay: -1s; }
+.drop4 { bottom: 0%; right: 50%; animation-delay: -1.5s; }
+
+@keyframes drop-fall {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(100px) rotate(180deg); opacity: 0.5; }
+}
+
+.katana-slash {
+    position: absolute;
+    width: 300px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #FFF, #4A90E2, transparent);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: slash-effect 1.5s ease-in-out infinite;
+    box-shadow: 0 0 20px #4A90E2;
+}
+
+@keyframes slash-effect {
+    0%, 100% { width: 0; opacity: 0; }
+    50% { width: 300px; opacity: 1; }
+}
+
+.loading-text {
+    position: absolute;
+    bottom: 10%;
+    font-size: 2rem;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    animation: text-flicker 1s ease-in-out infinite;
+    text-shadow: 2px 2px 0 var(--manga-black);
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ===== NAVIGATION ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--manga-black);
+    color: var(--manga-white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 4px solid var(--onepiece-primary);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: var(--onepiece-secondary);
+    text-shadow: 3px 3px 0 var(--onepiece-primary);
+    letter-spacing: 2px;
+}
+
+.brand-subtitle {
+    font-size: 0.8rem;
+    color: #FFF;
+    opacity: 0.8;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--manga-white);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--onepiece-secondary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::before,
+.nav-links a.active::before {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--onepiece-secondary);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn,
+.cart-btn {
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+    border: 2px solid var(--manga-white);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 0 var(--manga-black);
+}
+
+.nav-btn:hover,
+.cart-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--manga-black);
+    background: var(--onepiece-secondary);
+    color: var(--manga-black);
+}
+
+.cart-btn {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--naruto-primary);
+    color: var(--manga-white);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* ===== CART SIDEBAR ===== */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: var(--manga-white);
+    border-left: 4px solid var(--manga-black);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    background: var(--manga-black);
+    color: var(--manga-white);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--onepiece-primary);
+}
+
+.cart-header h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+}
+
+.close-cart {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-cart:hover {
+    transform: rotate(90deg);
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--manga-black);
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 0 var(--manga-black);
+    background: #FFF;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid var(--manga-black);
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-price {
+    color: var(--onepiece-primary);
+    font-weight: bold;
+}
+
+.cart-item-remove {
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+    border: none;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.cart-footer {
+    padding: 1.5rem;
+    border-top: 4px solid var(--manga-black);
+    background: #f9f9f9;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 80px;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sky-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+}
+
+.ocean-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(180deg, #4169E1 0%, #1E90FF 50%, #0066CC 100%);
+}
+
+.sailing-ship {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 250px;
+    animation: ship-sail 4s ease-in-out infinite;
+}
+
+.ship-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.main-sail,
+.front-sail {
+    animation: sail-wave 2s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+.jolly-roger {
+    animation: roger-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ship-sail {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+    50% { transform: translateX(-50%) translateY(-20px) rotate(2deg); }
+}
+
+@keyframes sail-wave {
+    0% { transform: scaleY(1); }
+    100% { transform: scaleY(1.05); }
+}
+
+@keyframes roger-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.floating-strawhat {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 100px;
+    height: 60px;
+    animation: hat-float 3s ease-in-out infinite;
+}
+
+@keyframes hat-float {
     0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-20px) rotate(-3deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
 }
 
 .speed-lines {
@@ -95,838 +720,751 @@ body {
         90deg,
         transparent 0px,
         transparent 50px,
-        rgba(0,0,0,0.03) 50px,
-        rgba(0,0,0,0.03) 52px
+        rgba(255,255,255,0.1) 50px,
+        rgba(255,255,255,0.1) 52px
     );
-    animation: speedLines 0.5s linear infinite;
+    animation: speed-move 0.5s linear infinite;
+    pointer-events: none;
 }
 
-@keyframes speedLines {
-    from { background-position: 0 0; }
-    to { background-position: 52px 0; }
-}
-
-/* ========================================
-   NAVIGATION - MANGA STYLE
-   ======================================== */
-
-.manga-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: var(--manga-panel);
-    border-bottom: var(--border-thick);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow-hard);
-}
-
-.logo {
-    position: relative;
-}
-
-.logo-text {
-    font-family: 'Bangers', cursive;
-    font-size: 2.5rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--ink-black);
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-}
-
-.logo-text .accent {
-    color: var(--accent-red);
-}
-
-.logo-splash {
-    position: absolute;
-    top: -10px;
-    right: -20px;
-    width: 60px;
-    height: 60px;
-    background: var(--accent-red);
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    animation: splashPulse 2s ease-in-out infinite;
-}
-
-@keyframes splashPulse {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.1) rotate(180deg); }
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--ink-black);
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid transparent;
-    position: relative;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-}
-
-.nav-links a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--accent-red);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::before,
-.nav-links a.active::before {
-    width: 100%;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--accent-red);
-}
-
-.cart-icon {
-    position: relative;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.cart-icon svg {
-    width: 28px;
-    height: 28px;
-    stroke: var(--ink-black);
-}
-
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: var(--accent-red);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 900;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--ink-black);
-}
-
-/* ========================================
-   HERO SECTION - ONE PIECE THEME
-   ======================================== */
-
-.hero {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 4rem 2rem;
-    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #4A90D9 100%);
-    border-bottom: var(--border-thick);
-    overflow: hidden;
+@keyframes speed-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(52px); }
 }
 
 .hero-content {
-    text-align: center;
+    position: relative;
     z-index: 10;
-    max-width: 800px;
+    text-align: center;
+    color: var(--manga-white);
+    text-shadow: 3px 3px 0 var(--manga-black), -1px -1px 0 var(--manga-black);
 }
 
-.manga-title {
+.hero-title {
     font-family: 'Bangers', cursive;
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 4px;
+    animation: title-glitch 3s infinite;
 }
 
-.manga-title .title-line {
-    display: block;
-    animation: titleSlideIn 1s ease-out forwards;
-    opacity: 0;
+.glitch-text {
+    position: relative;
 }
 
-.manga-title .line-1 { animation-delay: 0.2s; }
-.manga-title .line-2 { animation-delay: 0.4s; font-size: 6rem; color: var(--accent-red); }
-.manga-title .line-3 { animation-delay: 0.6s; }
-
-@keyframes titleSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50px) skewX(-10deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) skewX(0);
-    }
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.impact-text {
-    text-shadow: 
-        3px 3px 0px var(--ink-black),
-        -1px -1px 0px rgba(255,255,255,0.5);
-    display: inline-block;
-    animation: impactPulse 0.5s ease-in-out infinite alternate;
+.glitch-text::before {
+    animation: glitch-1 0.3s infinite;
+    color: var(--onepiece-primary);
+    z-index: -1;
 }
 
-@keyframes impactPulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
+.glitch-text::after {
+    animation: glitch-2 0.3s infinite;
+    color: var(--onepiece-secondary);
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(-2px, 2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(-2px, -2px); }
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: var(--ink-black);
-    background: rgba(255,255,255,0.8);
-    padding: 0.5rem 1rem;
-    border: var(--border-thin);
-    display: inline-block;
+    opacity: 0.9;
 }
 
-.cta-buttons {
+.hero-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
-/* ========================================
-   MANGA STYLE BUTTONS
-   ======================================== */
-
-.manga-btn {
-    position: relative;
-    padding: 1rem 2rem;
-    font-family: 'Bangers', cursive;
-    font-size: 1.3rem;
+.btn-hero {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
     text-transform: uppercase;
-    border: var(--border-thick);
-    cursor: pointer;
-    overflow: hidden;
+    font-weight: bold;
+    border: 3px solid var(--manga-white);
     transition: all 0.3s ease;
-    display: inline-block;
+    box-shadow: 4px 4px 0 var(--manga-black);
 }
 
-.manga-btn span {
-    position: relative;
-    z-index: 2;
+.btn-hero.primary {
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
 }
 
-.btn-primary {
-    background: var(--accent-red);
-    color: white;
-    box-shadow: var(--shadow-hard);
+.btn-hero.secondary {
+    background: transparent;
+    color: var(--manga-white);
 }
 
-.btn-secondary {
-    background: var(--paper-white);
-    color: var(--ink-black);
-    box-shadow: var(--shadow-hard);
+.btn-hero:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 var(--manga-black);
 }
 
-.manga-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--ink-black);
+.btn-hero.primary:hover {
+    background: var(--onepiece-secondary);
+    color: var(--manga-black);
 }
 
-.manga-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 0px 0px 0px var(--ink-black);
+.btn-hero.secondary:hover {
+    background: var(--manga-white);
+    color: var(--manga-black);
 }
 
-.btn-effect {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s ease;
-}
-
-.manga-btn:hover .btn-effect {
-    left: 100%;
-}
-
-/* ========================================
-   STRAW HAT ANIMATION
-   ======================================== */
-
-.straw-hat-container {
-    position: absolute;
-    top: 15%;
-    right: 10%;
-    animation: hatFloat 4s ease-in-out infinite;
-}
-
-.straw-hat {
-    width: 200px;
-    height: 150px;
-}
-
-.hat-svg {
-    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
-}
-
-@keyframes hatFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(-5deg); 
-    }
-    50% { 
-        transform: translateY(-30px) rotate(5deg); 
-    }
-}
-
-.hat-shadow {
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 20px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 50%;
-    animation: shadowScale 4s ease-in-out infinite;
-}
-
-@keyframes shadowScale {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.2; }
-    50% { transform: translateX(-50%) scale(0.7); opacity: 0.1; }
-}
-
-/* ========================================
-   OCEAN WAVES ANIMATION
-   ======================================== */
-
-.ocean-waves {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    overflow: hidden;
-}
-
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 100px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C150,120 300,0 450,60 C600,120 750,0 900,60 C1050,120 1200,0 1350,60 L1350,120 L0,120 Z' fill='%234A90D9'/%3E%3C/svg%3E");
-    background-size: 50% 100%;
-    opacity: 0.7;
-}
-
-.wave-1 { animation: waveMove 8s linear infinite; }
-.wave-2 { animation: waveMove 6s linear infinite reverse; opacity: 0.5; bottom: 10px; }
-.wave-3 { animation: waveMove 10s linear infinite; opacity: 0.3; bottom: 20px; }
-
-@keyframes waveMove {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* ========================================
-   SHIP SILHOUETTE
-   ======================================== */
-
-.ship-silhouette {
-    position: absolute;
-    bottom: 100px;
-    left: 5%;
-    width: 300px;
-    height: 200px;
-    animation: shipRock 3s ease-in-out infinite;
-}
-
-.ship-svg {
-    width: 100%;
-    height: 100%;
-}
-
-@keyframes shipRock {
-    0%, 100% { transform: rotate(-2deg) translateY(0); }
-    50% { transform: rotate(2deg) translateY(-10px); }
-}
-
-/* ========================================
-   CATEGORIES SECTION
-   ======================================== */
-
-.categories {
-    padding: 5rem 2rem;
-    background: var(--paper-white);
-    border-bottom: var(--border-thick);
-}
-
+/* ===== SECTIONS ===== */
 .section-title {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin: 4rem 0 2rem;
+    color: var(--manga-black);
+    text-shadow: 3px 3px 0 var(--manga-white), -1px -1px 0 var(--manga-black);
+    position: relative;
+}
+
+.section-title::before,
+.section-title::after {
+    content: '⚔';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--onepiece-primary);
+}
+
+.section-title::before {
+    left: -60px;
+}
+
+.section-title::after {
+    right: -60px;
+}
+
+/* ===== CATEGORIES ===== */
+.categories {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
 }
 
 .category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .category-card {
     position: relative;
-    padding: 3rem 2rem;
-    background: var(--manga-panel);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-hard);
-    text-align: center;
+    height: 300px;
+    border: 4px solid var(--manga-black);
     overflow: hidden;
+    cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 6px 6px 0 var(--manga-black);
 }
 
 .category-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0px var(--ink-black);
+    transform: translate(-6px, -6px);
+    box-shadow: 12px 12px 0 var(--manga-black);
 }
 
-.card-border {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 2px solid var(--ink-black);
-    pointer-events: none;
-}
-
-.category-card h3 {
-    font-family: 'Bangers', cursive;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.category-card p {
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-}
-
-.card-link {
-    display: inline-block;
-    font-weight: 900;
-    color: var(--accent-red);
-    text-decoration: none;
-    text-transform: uppercase;
-    border-bottom: 3px solid var(--accent-red);
-    padding-bottom: 0.3rem;
-    transition: all 0.3s ease;
-}
-
-.card-link:hover {
-    color: var(--ink-black);
-    border-color: var(--ink-black);
-}
-
-/* ========================================
-   ANIME-SPECIFIC EFFECTS
-   ======================================== */
-
-/* Demon Slayer - Water Breathing */
-.demon-slayer .water-breathing-effect {
+.category-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(74, 144, 217, 0.1) 50%, transparent 100%);
-    animation: waterExpand 3s ease-in-out infinite;
+    transition: transform 0.5s ease;
 }
 
-@keyframes waterExpand {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.5); opacity: 0.8; }
+.onepiece-bg {
+    background: linear-gradient(135deg, #D32F2F 0%, #FF6B35 100%);
 }
 
-/* Naruto - Shuriken Spin */
-.naruto .shuriken-spin::before {
-    content: '✦';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 3rem;
-    color: var(--accent-orange);
-    animation: shurikenRotate 2s linear infinite;
+.demonslayer-bg {
+    background: linear-gradient(135deg, #4A90E2 0%, #FF69B4 100%);
 }
 
-@keyframes shurikenRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.naruto-bg {
+    background: linear-gradient(135deg, #FF6B00 0%, #1a1a2e 100%);
 }
 
-/* DBZ - Aura Effect */
-.dbz .aura-effect {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
-    animation: auraPulse 1s ease-in-out infinite alternate;
+.dragonball-bg {
+    background: linear-gradient(135deg, #FF9500 0%, #FF4500 100%);
 }
 
-@keyframes auraPulse {
-    from { opacity: 0.5; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.1); }
+.aot-bg {
+    background: linear-gradient(135deg, #8B4513 0%, #DEB887 100%);
 }
 
-/* ========================================
-   TRENDING PRODUCTS
-   ======================================== */
-
-.trending {
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--paper-white) 0%, #f0e8d8 100%);
-    border-bottom: var(--border-thick);
+.jjk-bg {
+    background: linear-gradient(135deg, #9B59B6 0%, #2C3E50 100%);
 }
 
-.product-scroller {
+.category-card:hover .category-bg {
+    transform: scale(1.1);
+}
+
+.category-content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--manga-white);
+    text-align: center;
+    text-shadow: 2px 2px 0 var(--manga-black);
+}
+
+.category-content h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.category-content p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ===== PRODUCTS ===== */
+.featured-products {
+    padding: 4rem 2rem;
+    background: var(--manga-white);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
-    overflow-x: auto;
-    padding: 2rem 0;
-    scroll-behavior: smooth;
-}
-
-.product-scroller::-webkit-scrollbar {
-    height: 10px;
-}
-
-.product-scroller::-webkit-scrollbar-track {
-    background: var(--ink-black);
-    border: 2px solid var(--ink-black);
-}
-
-.product-scroller::-webkit-scrollbar-thumb {
-    background: var(--accent-red);
-    border: 2px solid var(--ink-black);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .product-card {
-    min-width: 280px;
-    background: var(--manga-panel);
-    border: var(--border-thick);
-    box-shadow: var(--shadow-hard);
-    padding: 1.5rem;
-    text-align: center;
+    border: 3px solid var(--manga-black);
+    box-shadow: 4px 4px 0 var(--manga-black);
     transition: all 0.3s ease;
+    overflow: hidden;
+    background: #FFF;
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 8px 8px 0px var(--ink-black);
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 var(--manga-black);
 }
 
 .product-image {
     width: 100%;
     height: 250px;
-    margin-bottom: 1rem;
-    border: var(--border-thin);
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
-.placeholder-art {
+.product-image img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.view-btn {
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+    border: 2px solid var(--manga-white);
+    padding: 0.8rem 2rem;
+    cursor: pointer;
     font-family: 'Bangers', cursive;
-    font-size: 3rem;
-    color: rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-.demon-slayer-art {
-    background: linear-gradient(45deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+.view-btn:hover {
+    background: var(--onepiece-secondary);
+    color: var(--manga-black);
 }
 
-.one-piece-art {
-    background: linear-gradient(45deg, #D4A574 0%, #8B4513 50%, #654321 100%);
+.product-info {
+    padding: 1.5rem;
 }
 
-.naruto-art {
-    background: linear-gradient(45deg, #ff6b35 0%, #c41e3a 50%, #8B0000 100%);
-}
-
-.dbz-art {
-    background: linear-gradient(45deg, #ffd700 0%, #ffa500 50%, #ff6b35 100%);
-}
-
-.product-card h4 {
-    font-family: 'Bangers', cursive;
-    font-size: 1.5rem;
+.product-title {
+    font-weight: bold;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
 }
 
-.anime-source {
+.product-anime {
+    color: var(--onepiece-primary);
     font-size: 0.9rem;
-    color: #666;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
 }
 
-.price {
+.product-price {
     font-size: 1.3rem;
-    font-weight: 900;
-    color: var(--accent-red);
-    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--naruto-primary);
 }
 
 .add-to-cart {
     width: 100%;
-    padding: 0.8rem;
-    background: var(--ink-black);
-    color: white;
+    background: var(--manga-black);
+    color: var(--manga-white);
     border: none;
-    font-family: 'M PLUS 1p', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
+    padding: 0.8rem;
+    margin-top: 1rem;
     cursor: pointer;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
     transition: all 0.3s ease;
 }
 
 .add-to-cart:hover {
-    background: var(--accent-red);
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    background: var(--onepiece-primary);
 }
 
-/* ========================================
-   NEWSLETTER SECTION
-   ======================================== */
+/* ===== ANIME ZONES ===== */
+.anime-zones {
+    padding: 4rem 0;
+}
 
-.newsletter {
-    padding: 5rem 2rem;
-    background: var(--ink-black);
-    color: var(--paper-white);
-    text-align: center;
-    border-bottom: var(--border-thick);
+.zone {
     position: relative;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    overflow: hidden;
+    border: 4px solid var(--manga-black);
 }
 
-.newsletter-content h2 {
+.onepiece-zone {
+    background: linear-gradient(135deg, #1E90FF 0%, #4169E1 100%);
+}
+
+.dragonball-zone {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
+}
+
+.naruto-zone {
+    background: linear-gradient(135deg, #1a1a2e 0%, #FF6B00 100%);
+}
+
+.zone-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--manga-white);
+    text-shadow: 3px 3px 0 var(--manga-black);
+}
+
+.zone-content h2 {
     font-family: 'Bangers', cursive;
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--accent-yellow);
 }
 
-.newsletter-form {
+.zone-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.zone-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--manga-white);
+    color: var(--manga-black);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid var(--manga-black);
+    box-shadow: 4px 4px 0 var(--manga-black);
+    transition: all 0.3s ease;
+}
+
+.zone-btn:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 var(--manga-black);
+}
+
+/* ===== MODALS ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
     display: flex;
-    gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+    align-items: center;
 }
 
-.newsletter-form input {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: 3px solid var(--paper-white);
-    background: var(--paper-white);
-    font-family: 'M PLUS 1p', sans-serif;
-    font-weight: 700;
-    min-width: 300px;
-}
-
-.newsletter-form input::placeholder {
-    color: #666;
-}
-
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.scroll-arrow {
-    width: 30px;
-    height: 50px;
-    border: 3px solid var(--paper-white);
-    border-radius: 20px;
+.modal-content {
+    background: var(--manga-white);
+    border: 4px solid var(--manga-black);
+    box-shadow: 8px 8px 0 var(--manga-black);
+    max-width: 500px;
+    width: 90%;
     position: relative;
+    animation: modal-slide 0.3s ease;
 }
 
-.scroll-arrow::before {
-    content: '';
+@keyframes modal-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
     position: absolute;
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 10px;
-    background: var(--paper-white);
-    border-radius: 3px;
-    animation: scrollDown 2s ease-in-out infinite;
+    right: 20px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--manga-black);
+    transition: transform 0.3s ease;
 }
 
-@keyframes scrollDown {
-    0%, 100% { opacity: 0; top: 10px; }
-    50% { opacity: 1; top: 25px; }
+.close-btn:hover {
+    transform: rotate(90deg);
 }
 
-/* ========================================
-   FOOTER
-   ======================================== */
+.auth-container {
+    padding: 2rem;
+}
 
-.manga-footer {
-    background: var(--manga-panel);
-    border-top: var(--border-thick);
-    padding: 3rem 2rem 1rem;
+.auth-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 1rem;
+    background: #e0e0e0;
+    border: 2px solid var(--manga-black);
+    cursor: pointer;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    font-family: 'Bangers', cursive;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--manga-black);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--manga-black);
+    background: #FFF;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--onepiece-primary);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+    border: 2px solid var(--manga-black);
+    cursor: pointer;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 0 var(--manga-black);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--manga-black);
+    background: var(--onepiece-secondary);
+    color: var(--manga-black);
+}
+
+.forgot-pass {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--onepiece-primary);
+    cursor: pointer;
+}
+
+/* Product Detail Modal */
+.product-detail {
+    max-width: 900px;
+}
+
+.product-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.product-image-large {
+    border: 3px solid var(--manga-black);
+    height: 400px;
+    overflow: hidden;
+}
+
+.product-image-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info-large {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info-large h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.anime-tag {
+    color: var(--onepiece-primary);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.price-large {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--naruto-primary);
+    margin-bottom: 1rem;
+}
+
+.size-selector,
+.quantity-selector {
+    margin: 1rem 0;
+}
+
+.size-selector label,
+.quantity-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.size-selector select,
+.quantity-selector input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--manga-black);
+    font-size: 1rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--manga-black);
+    color: var(--manga-white);
+    padding: 4rem 2rem 2rem;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.footer-section h3 {
-    font-family: 'Bangers', cursive;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
+.footer-section h3,
 .footer-section h4 {
-    font-size: 1.2rem;
+    font-family: 'Bangers', cursive;
     margin-bottom: 1rem;
-    text-transform: uppercase;
+    color: var(--onepiece-secondary);
 }
 
 .footer-section ul {
     list-style: none;
 }
 
-.footer-section ul li {
+.footer-section li {
     margin-bottom: 0.5rem;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
-.footer-section a {
-    color: var(--ink-black);
-    text-decoration: none;
-    font-weight: 700;
-    transition: color 0.3s ease;
+.footer-section li:hover {
+    opacity: 1;
+    color: var(--onepiece-secondary);
 }
 
-.footer-section a:hover {
-    color: var(--accent-red);
-}
-
-.social-links {
+.newsletter-form {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
-.social-icon {
-    width: 40px;
-    height: 40px;
-    border: var(--border-thick);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    text-decoration: none;
-    color: var(--ink-black);
-    transition: all 0.3s ease;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 2px solid var(--manga-white);
+    background: transparent;
+    color: var(--manga-white);
 }
 
-.social-icon:hover {
-    background: var(--accent-red);
-    color: white;
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px var(--ink-black);
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--onepiece-primary);
+    color: var(--manga-white);
+    border: 2px solid var(--manga-white);
+    cursor: pointer;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
 }
 
 .footer-bottom {
     text-align: center;
+    margin-top: 3rem;
     padding-top: 2rem;
-    border-top: var(--border-thin);
-    font-weight: 700;
+    border-top: 2px solid var(--manga-white);
+    opacity: 0.7;
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .manga-nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
     .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .manga-title {
-        font-size: 2.5rem;
-    }
-
-    .manga-title .line-2 {
-        font-size: 4rem;
-    }
-
-    .straw-hat-container {
-        top: 10%;
-        right: 5%;
-        transform: scale(0.7);
-    }
-
-    .ship-silhouette {
         display: none;
     }
-
-    .category-grid {
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-title::before,
+    .section-title::after {
+        display: none;
+    }
+    
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .product-detail-content {
         grid-template-columns: 1fr;
     }
-
-    .product-scroller {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-card {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .newsletter-form input {
-        width: 100%;
-        max-width: 300px;
+    
+    .category-grid {
+        grid-template-columns: 1fr;
     }
 }

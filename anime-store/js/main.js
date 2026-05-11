@@ -1,266 +1,435 @@
-// AniCollect - Main JavaScript
-// Manga/Anime style interactions
+// ===== PRODUCT DATA =====
+const products = [
+    {
+        id: 1,
+        title: "Monkey D. Luffy - Gear 5 Figure",
+        anime: "onepiece",
+        price: 299.99,
+        image: "https://images.unsplash.com/photo-1608889476561-6242cfcbf43e?w=400",
+        description: "Premium figure of Luffy in his incredible Gear 5 form. Highly detailed with multiple articulation points.",
+        type: "figure"
+    },
+    {
+        id: 2,
+        title: "Roronoa Zoro - Three Sword Style",
+        anime: "onepiece",
+        price: 349.99,
+        image: "https://images.unsplash.com/photo-1581833971358-2c8b550f8af6?w=400",
+        description: "Zoro wielding his three swords in an epic battle pose. Limited edition collectible.",
+        type: "figure"
+    },
+    {
+        id: 3,
+        title: "Tanjiro Kamado - Water Breathing",
+        anime: "demonslayer",
+        price: 279.99,
+        image: "https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=400",
+        description: "Tanjiro performing Water Breathing technique with flowing effects included.",
+        type: "figure"
+    },
+    {
+        id: 4,
+        title: "Naruto Uzumaki - Hokage Cloak",
+        anime: "naruto",
+        price: 89.99,
+        image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400",
+        description: "Official replica of Naruto's Seventh Hokage cloak. High-quality fabric with embroidered details.",
+        type: "fashion"
+    },
+    {
+        id: 5,
+        title: "Goku - Super Saiyan Blue",
+        anime: "dragonball",
+        price: 329.99,
+        image: "https://images.unsplash.com/photo-1618331835717-801e976710b2?w=400",
+        description: "Goku in his powerful Super Saiyan Blue form with energy aura effect parts.",
+        type: "figure"
+    },
+    {
+        id: 6,
+        title: "Levi Ackerman - ODM Gear",
+        anime: "attackontitan",
+        price: 399.99,
+        image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400",
+        description: "Captain Levi with full ODM gear setup. Includes multiple blades and gas canisters.",
+        type: "figure"
+    },
+    {
+        id: 7,
+        title: "Gojo Satoru - Blindfold Ver.",
+        anime: "jujutsukaisen",
+        price: 319.99,
+        image: "https://images.unsplash.com/photo-1620553957705-a6b8da6babda?w=400",
+        description: "The strongest sorcerer Gojo Satoru with his signature blindfold. Premium quality figure.",
+        type: "figure"
+    },
+    {
+        id: 8,
+        title: "Akatsuki Cloud Hoodie",
+        anime: "naruto",
+        price: 79.99,
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400",
+        description: "Iconic Akatsuki organization hoodie with cloud pattern. Comfortable and stylish.",
+        type: "fashion"
+    },
+    {
+        id: 9,
+        title: "Straw Hat Replica",
+        anime: "onepiece",
+        price: 49.99,
+        image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=400",
+        description: "Luffy's iconic straw hat. Perfect replica for cosplay or display.",
+        type: "accessory"
+    },
+    {
+        id: 10,
+        title: "Demon Slayer Corps Uniform",
+        anime: "demonslayer",
+        price: 129.99,
+        image: "https://images.unsplash.com/photo-1614713568397-b31dc5a1e5c0?w=400",
+        description: "Full Demon Slayer Corps uniform set. Authentic design with button details.",
+        type: "fashion"
+    },
+    {
+        id: 11,
+        title: "Dragon Ball Set (7 Stars)",
+        anime: "dragonball",
+        price: 199.99,
+        image: "https://images.unsplash.com/photo-1610419040528-689c18c52f4e?w=400",
+        description: "Complete set of 7 Dragon Balls with LED illumination. Summon Shenron!",
+        type: "collectible"
+    },
+    {
+        id: 12,
+        title: "Survey Corps Jacket",
+        anime: "attackontitan",
+        price: 99.99,
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400",
+        description: "Official Survey Corps jacket with Wings of Freedom emblem. Premium quality.",
+        type: "fashion"
+    }
+];
 
-document.addEventListener('DOMContentLoaded', function() {
+// ===== CART STATE =====
+let cart = [];
+let currentProduct = null;
+
+// ===== LOADING SCREEN =====
+const loaders = ['loader-op', 'loader-dbz', 'loader-naruto', 'loader-ds'];
+let currentLoaderIndex = 0;
+
+function initLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
     
-    // Cart functionality
-    let cartCount = 0;
-    const cartCountElement = document.querySelector('.cart-count');
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    // Randomly select a loader
+    currentLoaderIndex = Math.floor(Math.random() * loaders.length);
+    showLoader(loaders[currentLoaderIndex]);
     
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            cartCount++;
-            cartCountElement.textContent = cartCount;
-            
-            // Button animation
-            this.textContent = 'ADDED!';
-            this.style.background = '#c41e3a';
-            
-            setTimeout(() => {
-                this.textContent = 'ADD TO CART';
-                this.style.background = '';
-            }, 1500);
-            
-            // Cart bounce animation
-            cartCountElement.parentElement.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                cartCountElement.parentElement.style.transform = 'scale(1)';
-            }, 200);
-        });
+    // Hide loading screen after 3 seconds
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, 3000);
+}
+
+function showLoader(loaderId) {
+    loaders.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active');
     });
     
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    const activeLoader = document.getElementById(loaderId);
+    if (activeLoader) activeLoader.classList.add('active');
+}
+
+// Show different loader on page navigation
+function showRandomLoader(callback) {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'flex';
+    loadingScreen.classList.remove('hidden');
     
-    // Newsletter form submission
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            if (email) {
-                const btn = this.querySelector('button');
-                btn.querySelector('span').textContent = 'SUBSCRIBED!';
-                btn.style.background = '#2d5016';
-                
-                setTimeout(() => {
-                    btn.querySelector('span').textContent = 'SUBSCRIBE';
-                    btn.style.background = '';
-                    this.reset();
-                }, 2000);
-            }
+    // Random loader
+    const randomIndex = Math.floor(Math.random() * loaders.length);
+    showLoader(loaders[randomIndex]);
+    
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            if (callback) callback();
+        }, 500);
+    }, 2000);
+}
+
+// ===== AUTH MODAL =====
+function openAuthModal() {
+    document.getElementById('auth-modal').classList.add('active');
+}
+
+function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('active');
+}
+
+function showLogin() {
+    document.getElementById('login-form').classList.add('active');
+    document.getElementById('signup-form').classList.remove('active');
+    document.querySelectorAll('.auth-tab')[0].classList.add('active');
+    document.querySelectorAll('.auth-tab')[1].classList.remove('active');
+}
+
+function showSignup() {
+    document.getElementById('login-form').classList.remove('active');
+    document.getElementById('signup-form').classList.add('active');
+    document.querySelectorAll('.auth-tab')[0].classList.remove('active');
+    document.querySelectorAll('.auth-tab')[1].classList.add('active');
+}
+
+// ===== PRODUCT MODAL =====
+function openProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    currentProduct = product;
+    
+    document.getElementById('detail-img').src = product.image;
+    document.getElementById('detail-title').textContent = product.title;
+    document.getElementById('detail-anime').textContent = product.anime.replace(/([a-z])([A-Z])/g, '$1 $2');
+    document.getElementById('detail-price').textContent = `$${product.price.toFixed(2)}`;
+    document.getElementById('detail-desc').textContent = product.description;
+    
+    // Show/hide size selector based on product type
+    const sizeSection = document.getElementById('size-section');
+    if (product.type === 'fashion') {
+        sizeSection.style.display = 'block';
+    } else {
+        sizeSection.style.display = 'none';
+    }
+    
+    document.getElementById('product-modal').classList.add('active');
+}
+
+function closeProductModal() {
+    document.getElementById('product-modal').classList.remove('active');
+    currentProduct = null;
+}
+
+function addToCartFromDetail() {
+    if (!currentProduct) return;
+    
+    const qty = parseInt(document.getElementById('detail-qty').value) || 1;
+    const size = document.getElementById('detail-size').value;
+    
+    addToCart(currentProduct, qty, size);
+    closeProductModal();
+}
+
+// ===== CART FUNCTIONS =====
+function toggleCart() {
+    document.getElementById('cart-sidebar').classList.toggle('open');
+}
+
+function addToCart(product, qty = 1, size = null) {
+    const existingItem = cart.find(item => item.id === product.id && item.size === size);
+    
+    if (existingItem) {
+        existingItem.qty += qty;
+    } else {
+        cart.push({
+            ...product,
+            qty,
+            size
         });
     }
     
-    // Parallax effect for manga panels
-    const panels = document.querySelectorAll('.panel');
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
+    updateCart();
+    
+    // Show notification
+    showNotification('Added to cart!');
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+    
+    cartItems.innerHTML = '';
+    
+    let total = 0;
+    let count = 0;
+    
+    cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        count += item.qty;
         
-        panels.forEach((panel, index) => {
-            const speed = (index + 1) * 0.1;
-            panel.style.transform = `translateY(${scrolled * speed}px) rotate(${index % 2 === 0 ? '-' : ''}${5 + index}deg)`;
-        });
-    });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe product cards and category cards
-    const animateElements = document.querySelectorAll('.product-card, .category-card');
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-    
-    // Title text scramble effect on hover
-    const impactTexts = document.querySelectorAll('.impact-text');
-    impactTexts.forEach(text => {
-        const originalText = text.textContent;
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-        
-        text.addEventListener('mouseenter', function() {
-            let iterations = 0;
-            const interval = setInterval(() => {
-                this.textContent = this.textContent.split('')
-                    .map((letter, index) => {
-                        if (index < iterations) {
-                            return originalText[index];
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join('');
-                
-                if (iterations >= originalText.length) {
-                    clearInterval(interval);
-                }
-                
-                iterations += 1/3;
-            }, 30);
-        });
-    });
-    
-    // Speed lines intensity on scroll
-    const speedLines = document.querySelector('.speed-lines');
-    if (speedLines) {
-        window.addEventListener('scroll', function() {
-            const scrollSpeed = Math.min(window.scrollY / 100, 1);
-            speedLines.style.opacity = 0.03 + (scrollSpeed * 0.1);
-        });
-    }
-    
-    // Category card special effects
-    const categoryCards = document.querySelectorAll('.category-card');
-    categoryCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            // Add ripple effect
-            const ripple = document.createElement('div');
-            ripple.style.cssText = `
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: rgba(196, 30, 58, 0.3);
-                transform: scale(0);
-                animation: rippleEffect 0.6s ease-out;
-                pointer-events: none;
-            `;
-            
-            const rect = this.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            ripple.style.left = `${x - 10}px`;
-            ripple.style.top = `${y - 10}px`;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-    
-    // Add ripple keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes rippleEffect {
-            to {
-                transform: scale(15);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Product image hover zoom
-    const productImages = document.querySelectorAll('.product-image');
-    productImages.forEach(image => {
-        image.addEventListener('mouseenter', function() {
-            this.style.overflow = 'visible';
-            const art = this.querySelector('.placeholder-art');
-            if (art) {
-                art.style.transform = 'scale(1.1)';
-                art.style.transition = 'transform 0.3s ease';
-            }
-        });
-        
-        image.addEventListener('mouseleave', function() {
-            this.style.overflow = 'hidden';
-            const art = this.querySelector('.placeholder-art');
-            if (art) {
-                art.style.transform = 'scale(1)';
-            }
-        });
-    });
-    
-    // Navigation active state on scroll
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    window.addEventListener('scroll', function() {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (window.pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current) || 
-                (current === '' && link.getAttribute('href') === 'index.html')) {
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Random cherry blossom petals for Demon Slayer theme
-    function createPetal() {
-        const petal = document.createElement('div');
-        petal.style.cssText = `
-            position: fixed;
-            width: 15px;
-            height: 15px;
-            background: linear-gradient(45deg, #ffb7c5, #ff69b4);
-            border-radius: 15px 0px;
-            opacity: 0.8;
-            pointer-events: none;
-            z-index: 9999;
-            left: ${Math.random() * 100}vw;
-            top: -20px;
-            transform: rotate(${Math.random() * 360}deg);
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
+        itemEl.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="cart-item-info">
+                <div class="cart-item-title">${item.title}</div>
+                ${item.size ? `<div>Size: ${item.size}</div>` : ''}
+                <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.qty}</div>
+                <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
+            </div>
         `;
         
-        document.body.appendChild(petal);
-        
-        const duration = 5000 + Math.random() * 5000;
-        const endX = (Math.random() - 0.5) * 200;
-        
-        petal.animate([
-            { transform: `translate(0, 0) rotate(0deg)`, opacity: 0.8 },
-            { transform: `translate(${endX}px, ${window.innerHeight + 20}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
-        ], {
-            duration: duration,
-            easing: 'ease-in'
+        cartItems.appendChild(itemEl);
+    });
+    
+    cartCount.textContent = count;
+    cartTotal.textContent = `$${total.toFixed(2)}`;
+}
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--onepiece-primary);
+        color: white;
+        padding: 1rem 2rem;
+        border: 2px solid var(--manga-black);
+        box-shadow: 4px 4px 0 var(--manga-black);
+        z-index: 5000;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+// Add notification animations to CSS dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// ===== RENDER PRODUCTS =====
+function renderProducts(containerId, filter = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    let filteredProducts = products;
+    
+    if (filter) {
+        filteredProducts = products.filter(p => {
+            if (filter.type) return p.type === filter.type;
+            if (filter.anime) return p.anime === filter.anime;
+            return true;
         });
+    }
+    
+    container.innerHTML = '';
+    
+    filteredProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.title}">
+                <div class="product-overlay">
+                    <button class="view-btn" onclick="openProductModal(${product.id})">View Details</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-title">${product.title}</div>
+                <div class="product-anime">${product.anime.replace(/([a-z])([A-Z])/g, '$1 $2')}</div>
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <button class="add-to-cart" onclick="addToCart(products.find(p => p.id === ${product.id}))">Add to Cart</button>
+            </div>
+        `;
         
-        setTimeout(() => petal.remove(), duration);
+        container.appendChild(card);
+    });
+}
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    if (navLinks.style.display === 'flex') {
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = 'var(--manga-black)';
+        navLinks.style.padding = '1rem';
+    }
+}
+
+// ===== PAGE NAVIGATION WITH LOADER =====
+function navigateToPage(url) {
+    showRandomLoader(() => {
+        window.location.href = url;
+    });
+}
+
+// ===== INITIALIZE =====
+document.addEventListener('DOMContentLoaded', () => {
+    initLoadingScreen();
+    renderProducts('featured-products');
+    
+    // Close modals on outside click
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('active');
+        }
     }
     
-    // Create petals periodically when on figures page
-    if (window.location.pathname.includes('figures.html')) {
-        setInterval(createPetal, 800);
-    }
+    // Form submissions
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        showNotification('Login successful! Welcome back!');
+        closeAuthModal();
+    });
     
-    // Console easter egg
-    console.log('%c🗡️ ANICOLLECT - Your Anime Collectibles Destination', 'font-size: 20px; font-weight: bold; color: #c41e3a;');
-    console.log('%cBuilt with manga power! ⚡', 'font-size: 14px; color: #4a90d9;');
+    document.getElementById('signup-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        showNotification('Account created! Welcome to the crew!');
+        closeAuthModal();
+    });
+    
+    // Newsletter form
+    document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        showNotification('Subscribed! Stay tuned for updates!');
+    });
+    
+    // Checkout button
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+        if (cart.length === 0) {
+            showNotification('Your cart is empty!');
+            return;
+        }
+        showNotification('Proceeding to checkout...');
+        // Backend integration later
+    });
 });
+
+// Export for use in other pages
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { products, cart, addToCart, renderProducts };
+}
