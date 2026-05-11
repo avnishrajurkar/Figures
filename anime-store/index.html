@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniCollect - Anime Figures & Fashion</title>
+    <title>AniCollect - Premium Anime Collectibles & Fashion</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- One Piece Theme Background Animation -->
+    <div class="anime-bg one-piece-bg">
+        <div class="ship-sailing"></div>
+        <div class="ocean-waves"></div>
+        <div class="straw-hat-floating"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -22,151 +28,136 @@
         </ul>
         <div class="cart-icon">
             <span class="cart-count">0</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-            </svg>
-        </div>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with One Piece Theme -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-line">Collect Your</span>
-                <span class="title-line highlight-text">Passion</span>
-            </h1>
-            <p class="hero-subtitle">Premium Anime Figures & Exclusive Fashion</p>
+            <h1 class="hero-title glitch-effect" data-text="SET SAIL FOR TREASURE">SET SAIL FOR TREASURE</h1>
+            <p class="hero-subtitle">Premium Anime Collectibles & Exclusive Fashion</p>
             <div class="hero-buttons">
-                <a href="pages/figures.html" class="btn btn-primary">Shop Figures</a>
-                <a href="pages/fashion.html" class="btn btn-secondary">Explore Fashion</a>
+                <a href="pages/figures.html" class="btn btn-primary">Explore Figures</a>
+                <a href="pages/fashion.html" class="btn btn-secondary">View Fashion</a>
             </div>
         </div>
-        <div class="hero-animation">
-            <div class="floating-elements">
-                <div class="float-item item-1">⭐</div>
-                <div class="float-item item-2">🎌</div>
-                <div class="float-item item-3">⚡</div>
-                <div class="float-item item-4">🔥</div>
-                <div class="float-item item-5">💫</div>
-            </div>
+        <div class="hero-visual">
+            <div class="going-merry silhouette"></div>
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="categories">
-        <h2 class="section-title">Featured Categories</h2>
-        <div class="category-grid">
-            <div class="category-card" data-category="action">
-                <div class="category-icon">🗡️</div>
-                <h3>Action Figures</h3>
-                <p>Detailed collectibles from your favorite series</p>
-                <a href="pages/figures.html" class="category-link">Explore →</a>
+    <!-- Featured Collections with Dynamic Themes -->
+    <section class="collections">
+        <h2 class="section-title">Legendary Collections</h2>
+        
+        <!-- Demon Slayer Section -->
+        <div class="collection-card demon-slayer-theme">
+            <div class="collection-bg">
+                <div class="water-breathing-effect"></div>
+                <div class="floating-petals"></div>
             </div>
-            <div class="category-card" data-category="fashion">
-                <div class="category-icon">👕</div>
-                <h3>Anime Fashion</h3>
-                <p>Streetwear inspired by iconic characters</p>
-                <a href="pages/fashion.html" class="category-link">Explore →</a>
-            </div>
-            <div class="category-card" data-category="limited">
-                <div class="category-icon">🏆</div>
-                <h3>Limited Editions</h3>
-                <p>Exclusive releases and rare finds</p>
-                <a href="pages/figures.html" class="category-link">Explore →</a>
-            </div>
-            <div class="category-card" data-category="accessories">
-                <div class="category-icon">🎒</div>
-                <h3>Accessories</h3>
-                <p>Complete your collection with extras</p>
-                <a href="pages/fashion.html" class="category-link">Explore →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Popular Products -->
-    <section class="products">
-        <h2 class="section-title">Trending Now</h2>
-        <div class="product-slider">
-            <div class="product-card">
-                <div class="product-badge">Hot</div>
-                <div class="product-image">🎭</div>
-                <h3>Demon Slayer - Tanjiro</h3>
-                <p class="product-price">$89.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-badge new">New</div>
-                <div class="product-image">🦸</div>
-                <h3>My Hero - Deku</h3>
-                <p class="product-price">$79.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-image">👊</div>
-                <h3>One Piece - Luffy</h3>
-                <p class="product-price">$94.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-badge hot">Limited</div>
-                <div class="product-image">⚔️</div>
-                <h3>Attack on Titan - Levi</h3>
-                <p class="product-price">$129.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Anime Reference Section -->
-    <section class="anime-showcase">
-        <h2 class="section-title">By Series</h2>
-        <div class="anime-grid">
-            <div class="anime-card demon-slayer">
-                <div class="anime-overlay"></div>
+            <div class="collection-content">
                 <h3>Demon Slayer</h3>
-                <p>Breathing Styles Collection</p>
+                <p>Master the Water Breathing techniques with our exclusive figures</p>
+                <a href="pages/figures.html#demon-slayer" class="btn">Enter the Infinity Castle</a>
             </div>
-            <div class="anime-card one-piece">
-                <div class="anime-overlay"></div>
-                <h3>One Piece</h3>
-                <p>Straw Hat Crew</p>
+        </div>
+
+        <!-- Attack on Titan Section -->
+        <div class="collection-card aot-theme">
+            <div class="collection-bg">
+                <div class="titans-shadow"></div>
+                <div class="omni-directional-mobility"></div>
             </div>
-            <div class="anime-card naruto">
-                <div class="anime-overlay"></div>
-                <h3>Naruto</h3>
-                <p>Hidden Village Legends</p>
+            <div class="collection-content">
+                <h3>Attack on Titan</h3>
+                <p>Fight for humanity with premium Survey Corps collectibles</p>
+                <a href="pages/figures.html#aot" class="btn">Join the Survey Corps</a>
             </div>
-            <div class="anime-card dbz">
-                <div class="anime-overlay"></div>
+        </div>
+
+        <!-- Dragon Ball Z Section -->
+        <div class="collection-card dbz-theme">
+            <div class="collection-bg">
+                <div class="aura-flame"></div>
+                <div class="energy-blast"></div>
+            </div>
+            <div class="collection-content">
                 <h3>Dragon Ball Z</h3>
-                <p>Saiyan Warriors</p>
+                <p>Power up with legendary Super Saiyan figures</p>
+                <a href="pages/figures.html#dbz" class="btn">Go Super Saiyan</a>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
+    <!-- Fashion Section with Naruto Theme -->
+    <section class="fashion-showcase">
+        <div class="naruto-theme-bg">
+            <div class="chakra-energy"></div>
+            <div class="shuriken-spin"></div>
+        </div>
+        <h2 class="section-title">Shinobi Street Fashion</h2>
+        <div class="fashion-grid">
+            <div class="fashion-item">
+                <div class="item-preview akatsuki-cloak"></div>
+                <h4>Akatsuki Collection</h4>
+                <p>Limited Edition Cloaks</p>
+            </div>
+            <div class="fashion-item">
+                <div class="item-preview leaf-symbol"></div>
+                <h4>Hidden Leaf Apparel</h4>
+                <p>Authentic Ninja Gear</p>
+            </div>
+            <div class="fashion-item">
+                <div class="item-preview Rasengan-glow"></div>
+                <h4>Chakra Series</h4>
+                <p>Glow-in-Dark Designs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Items Counter -->
+    <section class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number" data-target="1000">0</div>
+            <p>Limited Edition Figures</p>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="500">0</div>
+            <p>Fashion Pieces</p>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <p>Anime Series</p>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="1000000">0</div>
+            <p>Happy Collectors</p>
+        </div>
+    </section>
+
+    <!-- Newsletter with Jujutsu Kaisen Theme -->
     <section class="newsletter">
+        <div class="jjk-theme-bg">
+            <div class="cursed-energy"></div>
+            <div class="domain-expansion"></div>
+        </div>
         <div class="newsletter-content">
-            <h2>Join the Community</h2>
-            <p>Get exclusive drops and early access to limited editions</p>
+            <h2>Domain Expansion: Exclusive Deals</h2>
+            <p>Subscribe to unlock limited-time offers and early access</p>
             <form class="newsletter-form">
                 <input type="email" placeholder="Enter your email" required>
-                <button type="submit" class="btn btn-primary">Subscribe</button>
+                <button type="submit" class="btn">Activate Domain</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>AniCollect</h4>
-                <p>Your ultimate destination for anime figures and fashion</p>
+                <h3>AniCollect</h3>
+                <p>Your ultimate destination for premium anime collectibles and fashion</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -180,15 +171,14 @@
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <span>📱</span>
-                    <span>📸</span>
-                    <span>🐦</span>
-                    <span>📺</span>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Discord</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+            <p>&copy; 2024 AniCollect. All rights reserved. Made with ⚡ for anime fans</p>
         </div>
     </footer>
 

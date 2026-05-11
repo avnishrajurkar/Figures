@@ -1,339 +1,358 @@
-// Main JavaScript for AniCollect
+// AniCollect - Premium Anime Store JavaScript
+// Advanced animations and interactions
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functions
-    initNavigation();
-    initCart();
-    initAnimations();
-    initProductCards();
-    initNewsletter();
-});
-
-// Navigation functionality
-function initNavigation() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
     
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
+    // ========================================
+    // COUNTER ANIMATION FOR STATS
+    // ========================================
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const animateCounter = (element) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                element.textContent = Math.floor(current).toLocaleString();
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        };
+        
+        updateCounter();
+    };
 
-    // Smooth scroll for anchor links
+    // Intersection Observer for counter animation
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(num => counterObserver.observe(num));
+
+    // ========================================
+    // SMOOTH SCROLLING FOR NAVIGATION
+    // ========================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Active link highlighting on scroll
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').includes(current)) {
-                item.classList.add('active');
-            }
-        });
-    });
-}
-
-// Cart functionality
-let cartCount = 0;
-
-function initCart() {
-    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
-    const cartCountElement = document.querySelector('.cart-count');
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            cartCount++;
-            if (cartCountElement) {
-                cartCountElement.textContent = cartCount;
-                
-                // Animation for cart count
-                cartCountElement.style.animation = 'none';
-                setTimeout(() => {
-                    cartCountElement.style.animation = 'pulse 0.5s ease';
-                }, 10);
-            }
-            
-            // Button feedback animation
-            this.textContent = 'Added! ✓';
-            this.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
-            
-            setTimeout(() => {
-                this.textContent = 'Add to Cart';
-                this.style.background = '';
-            }, 2000);
-        });
-    });
-}
-
-// Animation on scroll
-function initAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                
-                // Add specific animation classes based on element type
-                if (entry.target.classList.contains('category-card')) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                } else if (entry.target.classList.contains('product-card')) {
-                    entry.target.style.animation = 'zoomIn 0.6s ease-out forwards';
-                } else if (entry.target.classList.contains('anime-card')) {
-                    entry.target.style.animation = 'slideInRight 0.6s ease-out forwards';
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             }
         });
-    }, observerOptions);
-
-    // Observe elements
-    document.querySelectorAll('.category-card, .product-card, .anime-card').forEach(el => {
-        el.style.opacity = '0';
-        observer.observe(el);
     });
-}
 
-// Product card interactions
-function initProductCards() {
-    const productCards = document.querySelectorAll('.product-card');
-    
-    productCards.forEach(card => {
-        // Add hover sound effect simulation (visual feedback)
-        card.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-        });
+    // ========================================
+    // PARALLAX EFFECT FOR BACKGROUND ELEMENTS
+    // ========================================
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
         
-        // Click effect
-        card.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('btn-add-cart')) {
-                // Simulate navigation to product detail page
-                console.log('Navigate to product detail');
+        // Parallax for straw hat
+        const strawHat = document.querySelector('.straw-hat-floating');
+        if (strawHat) {
+            strawHat.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+        
+        // Parallax for ship
+        const ship = document.querySelector('.ship-sailing');
+        if (ship) {
+            ship.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+        
+        // Parallax for shuriken
+        const shuriken = document.querySelector('.shuriken-spin');
+        if (shuriken) {
+            shuriken.style.transform = `rotate(${scrolled * 0.5}deg)`;
+        }
+    });
+
+    // ========================================
+    // CART FUNCTIONALITY
+    // ========================================
+    let cartCount = 0;
+    const cartCountElement = document.querySelector('.cart-count');
+    
+    // Add to cart functionality (will be enhanced with backend later)
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (this.textContent.includes('Add to Cart') || 
+                this.textContent.includes('Buy Now') ||
+                this.textContent.includes('Explore') ||
+                this.textContent.includes('View')) {
+                
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Increment cart (demo only)
+                if (!this.classList.contains('btn-secondary')) {
+                    cartCount++;
+                    if (cartCountElement) {
+                        cartCountElement.textContent = cartCount;
+                        cartCountElement.style.animation = 'none';
+                        setTimeout(() => {
+                            cartCountElement.style.animation = 'pulse 0.5s ease-in-out';
+                        }, 10);
+                    }
+                }
             }
         });
     });
-}
 
-// Newsletter form handling
-function initNewsletter() {
+    // ========================================
+    // NEWSLETTER FORM HANDLING
+    // ========================================
     const newsletterForm = document.querySelector('.newsletter-form');
-    
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const emailInput = this.querySelector('input[type="email"]');
             const email = emailInput.value;
             
             if (email) {
                 // Show success message
-                const button = this.querySelector('button');
-                const originalText = button.textContent;
-                
-                button.textContent = 'Subscribed! ✓';
-                button.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
-                emailInput.value = '';
+                const btn = this.querySelector('button');
+                const originalText = btn.textContent;
+                btn.textContent = 'Domain Activated! ✓';
+                btn.style.background = '#27ae60';
                 
                 setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                }, 3000);
-                
-                console.log('Newsletter subscription:', email);
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    emailInput.value = '';
+                }, 2000);
             }
         });
     }
-}
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        const floatItems = document.querySelectorAll('.float-item');
-        
-        floatItems.forEach((item, index) => {
-            const speed = (index + 1) * 0.5;
-            item.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+    // ========================================
+    // HOVER EFFECTS FOR COLLECTION CARDS
+    // ========================================
+    const collectionCards = document.querySelectorAll('.collection-card');
+    
+    collectionCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const bg = this.querySelector('.collection-bg');
+            if (bg) {
+                bg.style.transform = 'scale(1.1)';
+                bg.style.transition = 'transform 0.5s ease';
+            }
         });
-    }
-});
-
-// Category filter animation
-function filterCategory(category) {
-    const cards = document.querySelectorAll('.category-card, .product-card');
-    
-    cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.5s ease-out forwards';
-        } else {
-            card.style.display = 'none';
-        }
+        
+        card.addEventListener('mouseleave', function() {
+            const bg = this.querySelector('.collection-bg');
+            if (bg) {
+                bg.style.transform = 'scale(1)';
+            }
+        });
     });
-}
 
-// Search functionality placeholder
-function searchProducts(query) {
-    console.log('Searching for:', query);
-    // Implement search logic here
-}
+    // ========================================
+    // GLITCH EFFECT ENHANCEMENT
+    // ========================================
+    const glitchTitle = document.querySelector('.glitch-effect');
+    if (glitchTitle) {
+        setInterval(() => {
+            glitchTitle.style.textShadow = `${Math.random() * 4 - 2}px ${Math.random() * 4 - 2}px 0px rgba(255, 0, 0, 0.5)`;
+            setTimeout(() => {
+                glitchTitle.style.textShadow = '';
+            }, 100);
+        }, 3000);
+    }
 
-// Utility functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// Lazy loading images (for future implementation with real images)
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
+    // ========================================
+    // FASHION ITEM REVEAL ANIMATION
+    // ========================================
+    const fashionItems = document.querySelectorAll('.fashion-item');
     
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    const fashionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                imageObserver.unobserve(img);
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+                fashionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fashionItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(50px)';
+        item.style.transition = 'all 0.6s ease';
+        fashionObserver.observe(item);
+    });
+
+    // ========================================
+    // NAVBAR SCROLL EFFECT
+    // ========================================
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+            navbar.style.boxShadow = '';
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // ========================================
+    // DYNAMIC PARTICLE SYSTEM FOR BACKGROUNDS
+    // ========================================
+    function createParticles(containerClass, count = 20) {
+        const container = document.querySelector(containerClass);
+        if (!container) return;
+        
+        for (let i = 0; i < count; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`;
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.pointerEvents = 'none';
+            
+            // Animate particles
+            const duration = Math.random() * 10 + 10;
+            const delay = Math.random() * 5;
+            
+            particle.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
+            
+            container.appendChild(particle);
+        }
+    }
+
+    // Add particle system keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize particles for different sections
+    createParticles('.one-piece-bg', 15);
+    createParticles('.naruto-theme-bg', 20);
+    createParticles('.jjk-theme-bg', 25);
+
+    // ========================================
+    // PRODUCT FILTER FUNCTIONALITY (For Figures Page)
+    // ========================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.getAttribute('data-filter');
+            
+            productCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // ========================================
+    // FAQ ACCORDION FUNCTIONALITY (For About Page)
+    // ========================================
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const isActive = this.classList.contains('active');
+            
+            // Close all other answers
+            faqQuestions.forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.style.maxHeight = '0';
+            });
+            
+            // Toggle current answer
+            if (!isActive) {
+                this.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
             }
         });
     });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
 
-// Anime-specific effects
-function triggerAnimeEffect(animeSeries) {
-    const effects = {
-        'demon-slayer': () => {
-            document.body.style.animation = 'flashRed 0.5s ease';
-            setTimeout(() => {
-                document.body.style.animation = '';
-            }, 500);
-        },
-        'one-piece': () => {
-            createParticles('🏴‍☠️');
-        },
-        'naruto': () => {
-            createParticles('🍥');
-        },
-        'dbz': () => {
-            document.body.style.filter = 'brightness(1.2) contrast(1.1)';
-            setTimeout(() => {
-                document.body.style.filter = '';
-            }, 1000);
-        }
-    };
-    
-    if (effects[animeSeries]) {
-        effects[animeSeries]();
+    // ========================================
+    // CONTACT FORM VALIDATION (For Contact Page)
+    // ========================================
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('[name="name"]').value;
+            const email = this.querySelector('[name="email"]').value;
+            const message = this.querySelector('[name="message"]').value;
+            
+            if (name && email && message) {
+                // Show success message
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Message Sent! ✓';
+                submitBtn.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    this.reset();
+                }, 2000);
+            }
+        });
     }
-}
 
-// Particle effect creator
-function createParticles(emoji) {
-    for (let i = 0; i < 10; i++) {
-        const particle = document.createElement('div');
-        particle.textContent = emoji;
-        particle.style.position = 'fixed';
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = Math.random() * 100 + 'vh';
-        particle.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '9999';
-        particle.style.animation = 'float 2s ease-out forwards';
-        document.body.appendChild(particle);
-        
-        setTimeout(() => {
-            particle.remove();
-        }, 2000);
-    }
-}
-
-// Add CSS animations dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes zoomIn {
-        from {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-    
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    @keyframes flashRed {
-        0%, 100% {
-            filter: none;
-        }
-        50% {
-            filter: sepia(1) hue-rotate(-50deg) saturate(3);
-        }
-    }
-    
-    .animate-in {
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-`;
-document.head.appendChild(style);
-
-console.log('AniCollect initialized successfully! 🎌');
+    console.log('🏴‍☠️ AniCollect - Ready to set sail for premium collectibles!');
+});
