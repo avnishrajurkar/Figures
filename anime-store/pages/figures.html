@@ -5,315 +5,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figures Catalog - AniCollect</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=M+PLUS+1p:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Manga+Temple&display=swap" rel="stylesheet">
     <style>
-        /* Demon Slayer Theme for Figures Page */
-        .figures-hero {
-            min-height: 60vh;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 3px solid #1a1a1a;
+        .page-header {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #4A90E2 0%, #FF69B4 100%);
+            text-align: center;
+            color: var(--manga-white);
+            text-shadow: 3px 3px 0 var(--manga-black);
         }
-
-        .water-breathing-bg {
-            position: absolute;
+        
+        .page-header h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-section {
+            padding: 2rem;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: var(--manga-black);
+            color: var(--manga-white);
+            border: 2px solid var(--manga-black);
+            cursor: pointer;
+            font-family: 'Bangers', cursive;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--demonslayer-primary);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--manga-black);
+        }
+        
+        .water-effects {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(74, 144, 217, 0.3) 0%, transparent 30%),
-                radial-gradient(circle at 80% 20%, rgba(74, 144, 217, 0.3) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(74, 144, 217, 0.2) 0%, transparent 50%);
-            animation: waterFlow 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
         }
-
-        @keyframes waterFlow {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
-        }
-
-        .cherry-blossom-tree {
+        
+        .water-drop {
             position: absolute;
-            bottom: 0;
-            left: 5%;
-            width: 200px;
-            height: 300px;
-            opacity: 0.6;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(74,144,226,0.6), transparent);
+            border-radius: 50% 50% 50% 0;
+            animation: fall 3s linear infinite;
         }
-
-        .katana-slash {
-            position: absolute;
-            top: 50%;
-            left: -100%;
-            width: 200%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #4a90d9, #fff, #4a90d9, transparent);
-            animation: katanaSlash 4s ease-in-out infinite;
+        
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
-
-        @keyframes katanaSlash {
-            0% { left: -100%; transform: rotate(-10deg); }
-            50% { left: 100%; transform: rotate(-10deg); }
-            51% { left: -100%; transform: rotate(10deg); }
-            100% { left: 100%; transform: rotate(10deg); }
+        
+        .katana-slash-effect {
+            position: fixed;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #4A90E2, #FFF, #4A90E2, transparent);
+            top: -10px;
+            left: 0;
+            animation: slash-down 4s ease-in-out infinite;
+            box-shadow: 0 0 20px #4A90E2;
         }
-
-        .figures-title {
-            z-index: 10;
-            text-align: center;
-        }
-
-        .filter-section {
-            padding: 3rem 2rem;
-            background: #f5f1e8;
-            border-bottom: 3px solid #1a1a1a;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            background: #fffef9;
-            border: 3px solid #1a1a1a;
-            font-family: 'M PLUS 1p', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 3px 3px 0px #1a1a1a;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #c41e3a;
-            color: white;
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px #1a1a1a;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            min-width: auto;
-        }
-
-        .figure-exclusive-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ffd700;
-            color: #1a1a1a;
-            padding: 0.5rem 1rem;
-            font-family: 'Bangers', cursive;
-            font-size: 1rem;
-            border: 2px solid #1a1a1a;
-            transform: rotate(10deg);
-            z-index: 5;
+        
+        @keyframes slash-down {
+            0%, 100% { top: -10px; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Manga Panel Background -->
-    <div class="manga-bg">
-        <div class="panel panel-1"></div>
-        <div class="panel panel-2"></div>
-        <div class="panel panel-3"></div>
-        <div class="speed-lines"></div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-container">
+            <div class="loader-demonslayer active" id="loader-ds">
+                <div class="water-breathing">
+                    <div class="water-drop drop1"></div>
+                    <div class="water-drop drop2"></div>
+                    <div class="water-drop drop3"></div>
+                    <div class="water-drop drop4"></div>
+                </div>
+                <div class="katana-slash"></div>
+                <div class="loading-text">Breathing Style!</div>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="manga-nav">
-        <div class="logo">
-            <span class="logo-text">ANI<span class="accent">COLLECT</span></span>
-            <div class="logo-splash"></div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-text">AniCollect</span>
+            <span class="brand-subtitle">Premium Collectibles</span>
         </div>
         <ul class="nav-links">
-            <li><a href="../index.html">HOME</a></li>
-            <li><a href="figures.html" class="active">FIGURES</a></li>
-            <li><a href="fashion.html">FASHION</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="figures.html" class="active">Figures</a></li>
+            <li><a href="fashion.html">Fashion</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="cart-icon">
-            <span class="cart-count">0</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-            </svg>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="openAuthModal()">
+                <span>Login</span>
+            </button>
+            <button class="cart-btn" onclick="toggleCart()">
+                <span class="cart-count" id="cart-count">0</span>
+                <span>🛒</span>
+            </button>
         </div>
+        <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
     </nav>
 
-    <!-- Hero Section - Demon Slayer Theme -->
-    <section class="figures-hero">
-        <div class="water-breathing-bg"></div>
-        <div class="katana-slash"></div>
-        
-        <div class="figures-title">
-            <h1 class="manga-title">
-                <span class="title-line line-1">PREMIUM</span>
-                <span class="title-line line-2 impact-text">ACTION FIGURES</span>
-                <span class="title-line line-3">COLLECTION</span>
-            </h1>
-            <p class="hero-subtitle">Demon Slayer • One Piece • Naruto • Dragon Ball Z • Attack on Titan</p>
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
         </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn-primary checkout-btn">Checkout</button>
+        </div>
+    </div>
 
-        <!-- Cherry Blossom Tree SVG -->
-        <svg class="cherry-blossom-tree" viewBox="0 0 200 300">
-            <path d="M 100 300 Q 100 200 80 150 Q 60 100 50 80" stroke="#4a3728" stroke-width="8" fill="none"/>
-            <path d="M 100 300 Q 100 200 120 150 Q 140 100 150 80" stroke="#4a3728" stroke-width="8" fill="none"/>
-            <path d="M 80 150 Q 60 130 40 120" stroke="#4a3728" stroke-width="6" fill="none"/>
-            <path d="M 120 150 Q 140 130 160 120" stroke="#4a3728" stroke-width="6" fill="none"/>
-            <circle cx="50" cy="80" r="5" fill="#ffb7c5" opacity="0.8"/>
-            <circle cx="60" cy="90" r="4" fill="#ffb7c5" opacity="0.8"/>
-            <circle cx="40" cy="100" r="5" fill="#ffb7c5" opacity="0.8"/>
-            <circle cx="150" cy="80" r="5" fill="#ffb7c5" opacity="0.8"/>
-            <circle cx="160" cy="90" r="4" fill="#ffb7c5" opacity="0.8"/>
-            <circle cx="140" cy="100" r="5" fill="#ffb7c5" opacity="0.8"/>
-        </svg>
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content auth-container">
+            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showLogin()">Login</button>
+                <button class="auth-tab" onclick="showSignup()">Sign Up</button>
+            </div>
+            
+            <form id="login-form" class="auth-form active">
+                <h2>Welcome Back!</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                    <span class="input-border"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <span class="input-border"></span>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            
+            <form id="signup-form" class="auth-form">
+                <h2>Join the Crew!</h2>
+                <div class="input-group">
+                    <input type="text" placeholder="Username" required>
+                    <span class="input-border"></span>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                    <span class="input-border"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <span class="input-border"></span>
+                </div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content product-detail">
+            <span class="close-btn" onclick="closeProductModal()">&times;</span>
+            <div class="product-detail-content">
+                <div class="product-image-large">
+                    <img id="detail-img" src="" alt="">
+                </div>
+                <div class="product-info-large">
+                    <h2 id="detail-title"></h2>
+                    <p class="anime-tag" id="detail-anime"></p>
+                    <p class="price-large" id="detail-price"></p>
+                    <p id="detail-desc"></p>
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <input type="number" id="detail-qty" value="1" min="1">
+                    </div>
+                    <button class="btn-primary" onclick="addToCartFromDetail()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Premium Figures Collection</h1>
+        <p>Hand-crafted collectibles from your favorite anime</p>
+        <div class="cherry-blossoms"></div>
     </section>
+
+    <!-- Water Effects -->
+    <div class="water-effects" id="water-effects"></div>
+    <div class="katana-slash-effect"></div>
 
     <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">ALL</button>
-            <button class="filter-btn" data-filter="demon-slayer">DEMON SLAYER</button>
-            <button class="filter-btn" data-filter="one-piece">ONE PIECE</button>
-            <button class="filter-btn" data-filter="naruto">NARUTO</button>
-            <button class="filter-btn" data-filter="dbz">DRAGON BALL Z</button>
-            <button class="filter-btn" data-filter="attack-titan">ATTACK ON TITAN</button>
-        </div>
-    </section>
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="filterProducts('all')">All Figures</button>
+        <button class="filter-btn" onclick="filterProducts('onepiece')">One Piece</button>
+        <button class="filter-btn" onclick="filterProducts('demonslayer')">Demon Slayer</button>
+        <button class="filter-btn" onclick="filterProducts('dragonball')">Dragon Ball</button>
+        <button class="filter-btn" onclick="filterProducts('naruto')">Naruto</button>
+        <button class="filter-btn" onclick="filterProducts('attackontitan')">Attack on Titan</button>
+        <button class="filter-btn" onclick="filterProducts('jujutsukaisen')">Jujutsu Kaisen</button>
+    </div>
 
     <!-- Products Grid -->
-    <section class="products-grid">
-        <div class="product-card" data-category="demon-slayer">
-            <div class="figure-exclusive-badge">EXCLUSIVE</div>
-            <div class="product-image">
-                <div class="placeholder-art demon-slayer-art"></div>
-            </div>
-            <h4>Tanjiro Kamado</h4>
-            <p class="anime-source">Demon Slayer</p>
-            <p class="price">$89.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="one-piece">
-            <div class="product-image">
-                <div class="placeholder-art one-piece-art"></div>
-            </div>
-            <h4>Luffy Gear 5</h4>
-            <p class="anime-source">One Piece</p>
-            <p class="price">$129.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="naruto">
-            <div class="figure-exclusive-badge">LIMITED</div>
-            <div class="product-image">
-                <div class="placeholder-art naruto-art"></div>
-            </div>
-            <h4>Naruto Sage Mode</h4>
-            <p class="anime-source">Naruto</p>
-            <p class="price">$99.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="dbz">
-            <div class="product-image">
-                <div class="placeholder-art dbz-art"></div>
-            </div>
-            <h4>Goku Ultra Instinct</h4>
-            <p class="anime-source">Dragon Ball Z</p>
-            <p class="price">$149.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="demon-slayer">
-            <div class="product-image">
-                <div class="placeholder-art demon-slayer-art"></div>
-            </div>
-            <h4>Nezuko Kamado</h4>
-            <p class="anime-source">Demon Slayer</p>
-            <p class="price">$84.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="attack-titan">
-            <div class="figure-exclusive-badge">RARE</div>
-            <div class="product-image">
-                <div class="placeholder-art" style="background: linear-gradient(45deg, #2d5016 0%, #1a3009 50%, #0f1a05 100%);"></div>
-            </div>
-            <h4>Eren Yeager Titan</h4>
-            <p class="anime-source">Attack on Titan</p>
-            <p class="price">$159.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="one-piece">
-            <div class="product-image">
-                <div class="placeholder-art one-piece-art"></div>
-            </div>
-            <h4>Zoro Roronoa</h4>
-            <p class="anime-source">One Piece</p>
-            <p class="price">$94.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-
-        <div class="product-card" data-category="dbz">
-            <div class="figure-exclusive-badge">EXCLUSIVE</div>
-            <div class="product-image">
-                <div class="placeholder-art dbz-art"></div>
-            </div>
-            <h4>Vegeta SS Blue</h4>
-            <p class="anime-source">Dragon Ball Z</p>
-            <p class="price">$139.99</p>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
+    <section class="featured-products">
+        <div class="products-grid" id="figures-products"></div>
     </section>
 
     <!-- Footer -->
-    <footer class="manga-footer">
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ANI<span class="accent">COLLECT</span></h3>
+                <h3>AniCollect</h3>
                 <p>Your ultimate destination for premium anime collectibles and fashion.</p>
             </div>
             <div class="footer-section">
-                <h4>QUICK LINKS</h4>
+                <h4>Quick Links</h4>
                 <ul>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="figures.html">Figures</a></li>
                     <li><a href="fashion.html">Fashion</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>FOLLOW US</h4>
-                <div class="social-links">
-                    <a href="#" class="social-icon">TW</a>
-                    <a href="#" class="social-icon">IG</a>
-                    <a href="#" class="social-icon">YT</a>
-                    <a href="#" class="social-icon">DC</a>
-                </div>
+                <h4>Anime Series</h4>
+                <ul>
+                    <li>One Piece</li>
+                    <li>Naruto</li>
+                    <li>Dragon Ball</li>
+                    <li>Demon Slayer</li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -323,38 +275,43 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const productCards = document.querySelectorAll('.product-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-
-                const filter = this.getAttribute('data-filter');
-
-                productCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease forwards';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Add fadeIn animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts('figures-products', { type: 'figure' });
+            createWaterDrops();
+            
+            // Check URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const animeFilter = urlParams.get('anime');
+            if (animeFilter) {
+                filterProducts(animeFilter);
             }
-        `;
-        document.head.appendChild(style);
+        });
+        
+        function filterProducts(anime) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            
+            if (anime === 'all') {
+                renderProducts('figures-products', { type: 'figure' });
+            } else {
+                renderProducts('figures-products', { type: 'figure', anime: anime });
+            }
+        }
+        
+        function createWaterDrops() {
+            const container = document.getElementById('water-effects');
+            for (let i = 0; i < 20; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'water-drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDelay = Math.random() * 3 + 's';
+                drop.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                container.appendChild(drop);
+            }
+        }
     </script>
 </body>
 </html>

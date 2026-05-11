@@ -5,473 +5,301 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - AniCollect</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=M+PLUS+1p:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Manga+Temple&display=swap" rel="stylesheet">
     <style>
-        /* Attack on Titan Theme for About Page */
-        .about-hero {
-            min-height: 50vh;
-            background: linear-gradient(180deg, #2d5016 0%, #1a3009 50%, #0f1a05 100%);
+        .page-header {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #8B4513 0%, #DEB887 100%);
+            text-align: center;
+            color: var(--manga-white);
+            text-shadow: 3px 3px 0 var(--manga-black);
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 3px solid #1a1a1a;
         }
-
-        .wall-maria {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background: 
-                repeating-linear-gradient(
-                    90deg,
-                    #3a3a3a 0px,
-                    #3a3a3a 100px,
-                    #2a2a2a 100px,
-                    #2a2a2a 110px
-                );
-            opacity: 0.5;
+        
+        .page-header h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
-
+        
         .titan-shadow {
             position: absolute;
-            top: 20%;
+            bottom: 0;
             right: 10%;
             width: 300px;
             height: 400px;
             opacity: 0.3;
-            animation: titanAppear 8s ease-in-out infinite;
+            animation: titan-appear 4s ease-in-out infinite;
         }
-
-        @keyframes titanAppear {
-            0%, 100% { transform: scale(0.9) translateX(0); opacity: 0.3; }
-            50% { transform: scale(1.1) translateX(-20px); opacity: 0.5; }
+        
+        @keyframes titan-appear {
+            0%, 100% { transform: translateY(20px); opacity: 0.2; }
+            50% { transform: translateY(0); opacity: 0.4; }
         }
-
+        
         .odm-cable {
-            position: absolute;
+            position: fixed;
             width: 3px;
-            background: #666;
-            animation: cableSwing 3s ease-in-out infinite;
+            background: linear-gradient(180deg, transparent, #C0C0C0, transparent);
+            top: -100px;
+            animation: cable-swing 3s ease-in-out infinite;
         }
-
-        .cable-1 {
-            top: 0;
-            left: 20%;
-            height: 300px;
-            transform: rotate(10deg);
+        
+        @keyframes cable-swing {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
         }
-
-        .cable-2 {
-            top: 0;
-            left: 25%;
-            height: 350px;
-            transform: rotate(-5deg);
-        }
-
-        @keyframes cableSwing {
-            0%, 100% { transform: rotate(5deg); }
-            50% { transform: rotate(-5deg); }
-        }
-
-        .about-title {
-            z-index: 10;
-            text-align: center;
-        }
-
-        /* Story Section */
-        .story-section {
-            padding: 5rem 2rem;
-            background: #f5f1e8;
-            border-bottom: 3px solid #1a1a1a;
-        }
-
-        .story-container {
-            max-width: 1000px;
+        
+        .about-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
-            align-items: center;
+            margin-top: 3rem;
         }
-
-        .story-content h2 {
+        
+        .about-card {
+            border: 4px solid var(--manga-black);
+            padding: 2rem;
+            background: #FFF;
+            box-shadow: 6px 6px 0 var(--manga-black);
+            transition: all 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 var(--manga-black);
+        }
+        
+        .about-card h3 {
             font-family: 'Bangers', cursive;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #c41e3a;
-        }
-
-        .story-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.8rem;
+            color: var(--aot-primary);
             margin-bottom: 1rem;
         }
-
-        .story-image {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 3px solid #1a1a1a;
-            box-shadow: 8px 8px 0px #1a1a1a;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bangers', cursive;
-            font-size: 2rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        /* Stats Section */
+        
         .stats-section {
             padding: 4rem 2rem;
-            background: #1a1a1a;
-            color: #f5f1e8;
-            border-bottom: 3px solid #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: var(--manga-white);
+            text-align: center;
         }
-
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
-
-        .stat-card {
-            text-align: center;
+        
+        .stat-item {
             padding: 2rem;
-            border: 3px solid #f5f1e8;
-            box-shadow: 5px 5px 0px rgba(245, 241, 232, 0.3);
         }
-
+        
         .stat-number {
             font-family: 'Bangers', cursive;
             font-size: 4rem;
-            color: #ffd700;
-            display: block;
+            color: var(--onepiece-secondary);
+            text-shadow: 3px 3px 0 var(--manga-black);
         }
-
+        
         .stat-label {
             font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
             margin-top: 0.5rem;
+            opacity: 0.9;
         }
-
-        /* Team Section */
-        .team-section {
-            padding: 5rem 2rem;
-            background: #f5f1e8;
+        
+        .wall-maria {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(90deg, #8B4513, #A0522D, #8B4513);
+            z-index: 0;
         }
-
-        .team-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .team-title h2 {
-            font-family: 'Bangers', cursive;
-            font-size: 3rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .team-card {
-            background: #fffef9;
-            border: 3px solid #1a1a1a;
-            box-shadow: 5px 5px 0px #1a1a1a;
-            text-align: center;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 10px 10px 0px #1a1a1a;
-        }
-
-        .team-avatar {
+        
+        .wall-pattern {
+            position: absolute;
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #c41e3a 0%, #8B0000 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bangers', cursive;
-            font-size: 4rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        .team-info {
-            padding: 1.5rem;
-        }
-
-        .team-info h4 {
-            font-family: 'Bangers', cursive;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            color: #c41e3a;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .team-quote {
-            font-style: italic;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Values Section */
-        .values-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f5f1e8 0%, #e8e0d0 100%);
-            border-top: 3px solid #1a1a1a;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .value-card {
-            background: #fffef9;
-            border: 3px solid #1a1a1a;
-            padding: 2rem;
-            box-shadow: 5px 5px 0px #1a1a1a;
-            transition: all 0.3s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 10px 10px 0px #1a1a1a;
-        }
-
-        .value-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .value-card h3 {
-            font-family: 'Bangers', cursive;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #c41e3a;
-        }
-
-        @media (max-width: 768px) {
-            .story-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .titan-shadow {
-                display: none;
-            }
+            height: 100px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 98px,
+                rgba(0,0,0,0.2) 98px,
+                rgba(0,0,0,0.2) 100px
+            );
         }
     </style>
 </head>
 <body>
-    <!-- Manga Panel Background -->
-    <div class="manga-bg">
-        <div class="panel panel-1"></div>
-        <div class="panel panel-2"></div>
-        <div class="panel panel-3"></div>
-        <div class="speed-lines"></div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-container">
+            <div class="loader-demonslayer active">
+                <div class="water-breathing">
+                    <div class="water-drop drop1"></div>
+                    <div class="water-drop drop2"></div>
+                    <div class="water-drop drop3"></div>
+                    <div class="water-drop drop4"></div>
+                </div>
+                <div class="katana-slash"></div>
+                <div class="loading-text">Breathing Style!</div>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="manga-nav">
-        <div class="logo">
-            <span class="logo-text">ANI<span class="accent">COLLECT</span></span>
-            <div class="logo-splash"></div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-text">AniCollect</span>
+            <span class="brand-subtitle">Premium Collectibles</span>
         </div>
         <ul class="nav-links">
-            <li><a href="../index.html">HOME</a></li>
-            <li><a href="figures.html">FIGURES</a></li>
-            <li><a href="fashion.html">FASHION</a></li>
-            <li><a href="about.html" class="active">ABOUT</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="figures.html">Figures</a></li>
+            <li><a href="fashion.html">Fashion</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="cart-icon">
-            <span class="cart-count">0</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-            </svg>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="openAuthModal()">
+                <span>Login</span>
+            </button>
+            <button class="cart-btn" onclick="toggleCart()">
+                <span class="cart-count" id="cart-count">0</span>
+                <span>🛒</span>
+            </button>
         </div>
+        <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
     </nav>
 
-    <!-- Hero Section - Attack on Titan Theme -->
-    <section class="about-hero">
-        <div class="wall-maria"></div>
-        
-        <!-- ODM Cables -->
-        <div class="odm-cable cable-1"></div>
-        <div class="odm-cable cable-2"></div>
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn-primary checkout-btn">Checkout</button>
+        </div>
+    </div>
 
-        <!-- Titan Shadow SVG -->
-        <svg class="titan-shadow" viewBox="0 0 300 400">
-            <ellipse cx="150" cy="350" rx="100" ry="30" fill="#000" opacity="0.3"/>
-            <path d="M 100 350 L 120 200 L 110 150 L 130 100 L 150 80 L 170 100 L 190 150 L 180 200 L 200 350 Z" fill="#000" opacity="0.5"/>
-            <circle cx="140" cy="120" r="10" fill="#ff6b35" opacity="0.8"/>
-            <circle cx="160" cy="120" r="10" fill="#ff6b35" opacity="0.8"/>
-        </svg>
+    <!-- Wall Maria Background -->
+    <div class="wall-maria">
+        <div class="wall-pattern"></div>
+    </div>
 
-        <div class="about-title">
-            <h1 class="manga-title">
-                <span class="title-line line-1">OUR</span>
-                <span class="title-line line-2 impact-text">STORY</span>
-            </h1>
-            <p class="hero-subtitle">Dedicated to Anime Fans, By Anime Fans</p>
+    <!-- ODM Cables -->
+    <div id="odm-cables"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>About AniCollect</h1>
+        <p>Your trusted source for premium anime collectibles since 2020</p>
+        <div class="titan-shadow">
+            <svg viewBox="0 0 200 300">
+                <path d="M50,250 Q30,200 40,150 Q50,100 100,80 Q150,100 160,150 Q170,200 150,250" fill="#000" opacity="0.5"/>
+                <circle cx="80" cy="120" r="15" fill="#FFF"/>
+                <circle cx="120" cy="120" r="15" fill="#FFF"/>
+            </svg>
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section class="story-section">
-        <div class="story-container">
-            <div class="story-content">
-                <h2>THE BEGINNING</h2>
-                <p>Founded in 2020 by a group of passionate anime enthusiasts, AniCollect was born from a simple mission: to provide fellow otaku with the highest quality collectibles and fashion that truly represent the spirit of their favorite series.</p>
-                <p>What started as a small online store has grown into a trusted destination for thousands of anime fans worldwide. We personally curate every item in our collection, ensuring authenticity and quality that meets our own standards as collectors.</p>
-                <p>Our name "AniCollect" represents our commitment to bringing together the best of anime culture - from limited edition figures to wearable expressions of your passion.</p>
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>🏆 Our Mission</h3>
+                <p>To bring the highest quality anime collectibles and fashion to fans worldwide. We believe every otaku deserves access to premium merchandise that honors their favorite series.</p>
             </div>
-            <div class="story-image">
-                ANIME PASSION
+            
+            <div class="about-card">
+                <h3>⚓ Our Story</h3>
+                <p>Founded by anime fans for anime fans, AniCollect started as a small shop and grew into a premier destination. Like the Straw Hat crew, we're on a journey to find the ultimate treasure - your satisfaction!</p>
+            </div>
+            
+            <div class="about-card">
+                <h3>🔥 Quality Promise</h3>
+                <p>Every product is carefully selected and verified for authenticity. We work directly with licensed manufacturers to ensure you receive genuine, high-quality items worthy of any collection.</p>
+            </div>
+            
+            <div class="about-card">
+                <h3>🌍 Global Shipping</h3>
+                <p>From the Grand Line to the Hidden Leaf, we ship worldwide! No matter where you are in the world, your favorite anime merch is just a click away.</p>
+            </div>
+            
+            <div class="about-card">
+                <h3>💎 Exclusive Items</h3>
+                <p>We offer limited edition and exclusive items you won't find anywhere else. From convention exclusives to special collaborations, we've got the rare finds.</p>
+            </div>
+            
+            <div class="about-card">
+                <h3>❤️ Community First</h3>
+                <p>We're more than a store - we're a community. Join thousands of fellow fans, participate in events, and be part of the AniCollect family!</p>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats-section">
+        <h2 style="font-family: 'Bangers', cursive; font-size: 3rem; margin-bottom: 3rem;">By The Numbers</h2>
         <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number" data-target="15000">0</span>
-                <span class="stat-label">Happy Customers</span>
+            <div class="stat-item">
+                <div class="stat-number" data-target="50000">0</div>
+                <div class="stat-label">Happy Customers</div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" data-target="500">0</span>
-                <span class="stat-label">Products</span>
+            <div class="stat-item">
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Products Sold</div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" data-target="50">0</span>
-                <span class="stat-label">Anime Series</span>
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Unique Items</div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number" data-target="100">0</span>
-                <span class="stat-label">Countries</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Section -->
-    <section class="values-section">
-        <div class="team-title">
-            <h2 class="manga-title">OUR VALUES</h2>
-        </div>
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🎯</div>
-                <h3>AUTHENTICITY</h3>
-                <p>Every product is verified authentic. No bootlegs, no fakes - only genuine collectibles from licensed manufacturers.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">❤️</div>
-                <h3>PASSION</h3>
-                <p>We're fans ourselves. We understand what collectors want because we are collectors.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🚀</div>
-                <h3>QUALITY</h3>
-                <p>Premium products deserve premium presentation. Every item is carefully packaged and protected.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <h3>COMMUNITY</h3>
-                <p>Building more than a store - we're creating a community where anime fans can connect and share.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="team-title">
-            <h2 class="manga-title">MEET THE CREW</h2>
-        </div>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-avatar">⚡</div>
-                <div class="team-info">
-                    <h4>Alex Chen</h4>
-                    <p class="team-role">Founder & CEO</p>
-                    <p class="team-quote">"Anime changed my life. Now I help others find their connection."</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">🔥</div>
-                <div class="team-info">
-                    <h4>Sarah Martinez</h4>
-                    <p class="team-role">Head of Collections</p>
-                    <p class="team-quote">"Every figure tells a story. I make sure ours are legendary."</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">🌊</div>
-                <div class="team-info">
-                    <h4>Kenji Yamamoto</h4>
-                    <p class="team-role">Product Curator</p>
-                    <p class="team-quote">"Quality over quantity. Always."</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">🎨</div>
-                <div class="team-info">
-                    <h4>Emma Wilson</h4>
-                    <p class="team-role">Community Manager</p>
-                    <p class="team-quote">"Connecting fans worldwide is my greatest joy."</p>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Anime Series</div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="manga-footer">
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ANI<span class="accent">COLLECT</span></h3>
+                <h3>AniCollect</h3>
                 <p>Your ultimate destination for premium anime collectibles and fashion.</p>
             </div>
             <div class="footer-section">
-                <h4>QUICK LINKS</h4>
+                <h4>Quick Links</h4>
                 <ul>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="figures.html">Figures</a></li>
                     <li><a href="fashion.html">Fashion</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>FOLLOW US</h4>
-                <div class="social-links">
-                    <a href="#" class="social-icon">TW</a>
-                    <a href="#" class="social-icon">IG</a>
-                    <a href="#" class="social-icon">YT</a>
-                    <a href="#" class="social-icon">DC</a>
-                </div>
+                <h4>Company</h4>
+                <ul>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Press</li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -481,42 +309,42 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // Animate stats counter
-        const statNumbers = document.querySelectorAll('.stat-number');
+        document.addEventListener('DOMContentLoaded', () => {
+            createODMCables();
+            animateStats();
+        });
         
-        const animateStats = () => {
+        function createODMCables() {
+            const container = document.getElementById('odm-cables');
+            for (let i = 0; i < 5; i++) {
+                const cable = document.createElement('div');
+                cable.className = 'odm-cable';
+                cable.style.left = (Math.random() * 100) + '%';
+                cable.style.height = (Math.random() * 300 + 200) + 'px';
+                cable.style.animationDelay = (Math.random() * 2) + 's';
+                container.appendChild(cable);
+            }
+        }
+        
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
             statNumbers.forEach(stat => {
                 const target = parseInt(stat.getAttribute('data-target'));
-                const duration = 2000;
-                const increment = target / (duration / 16);
                 let current = 0;
+                const increment = target / 50;
                 
-                const updateCounter = () => {
+                const timer = setInterval(() => {
                     current += increment;
-                    if (current < target) {
-                        stat.textContent = Math.floor(current).toLocaleString();
-                        requestAnimationFrame(updateCounter);
-                    } else {
+                    if (current >= target) {
                         stat.textContent = target.toLocaleString() + '+';
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current).toLocaleString();
                     }
-                };
-                
-                updateCounter();
+                }, 40);
             });
-        };
-
-        // Trigger animation when stats section is visible
-        const statsSection = document.querySelector('.stats-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(statsSection);
+        }
     </script>
 </body>
 </html>
