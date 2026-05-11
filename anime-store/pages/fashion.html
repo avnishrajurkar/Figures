@@ -3,125 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Fashion - AniCollect</title>
+    <title>Anime Fashion Store - AniCollect</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        .page-header {
-            padding: 150px 5% 50px;
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            text-align: center;
-        }
-        
-        .page-title {
-            font-family: 'Bangers', cursive;
-            font-size: 4rem;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-        
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-        
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid var(--primary-color);
-            background: transparent;
-            color: var(--light-text);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .products-section {
-            padding: 50px 5%;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .fashion-category {
-            padding: 50px 5%;
-            background: var(--darker-bg);
-        }
-        
-        .category-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .fashion-banner {
-            height: 250px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-family: 'Bangers', cursive;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .fashion-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.4s ease;
-        }
-        
-        .fashion-banner:hover::before {
-            transform: scale(1.1);
-        }
-        
-        .banner-tshirts::before {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-        }
-        
-        .banner-hoodies::before {
-            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
-        }
-        
-        .banner-accessories::before {
-            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-        }
-        
-        .banner-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-    </style>
 </head>
 <body>
+    <!-- Naruto Theme Background -->
+    <div class="anime-bg naruto-fashion-bg">
+        <div class="chakra-energy"></div>
+        <div class="shuriken-spin"></div>
+        <div class="kunai-floating"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -136,156 +28,206 @@
         </ul>
         <div class="cart-icon">
             <span class="cart-count">0</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-            </svg>
-        </div>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <h1 class="page-title">Anime Fashion</h1>
-        <p style="color: var(--gray-text); font-size: 1.2rem;">Streetwear and apparel inspired by iconic characters</p>
+    <!-- Hero Section -->
+    <section class="page-hero fashion-hero">
+        <h1 class="hero-title glitch-effect" data-text="SHINOBI STREETWEAR">SHINOBI STREETWEAR</h1>
+        <p class="hero-subtitle">Exclusive anime-inspired fashion collections</p>
         
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
-            <button class="filter-btn" onclick="filterProducts('tshirts')">T-Shirts</button>
-            <button class="filter-btn" onclick="filterProducts('hoodies')">Hoodies</button>
-            <button class="filter-btn" onclick="filterProducts('jackets')">Jackets</button>
-            <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+        <!-- Category Filter -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Collections</button>
+            <button class="filter-btn" data-filter="naruto">Naruto</button>
+            <button class="filter-btn" data-filter="one-piece">One Piece</button>
+            <button class="filter-btn" data-filter="demon-slayer">Demon Slayer</button>
+            <button class="filter-btn" data-filter="jjk">Jujutsu Kaisen</button>
+            <button class="filter-btn" data-filter="streetwear">Streetwear</button>
         </div>
     </section>
 
-    <!-- Fashion Categories Showcase -->
-    <section class="fashion-category">
-        <h2 class="section-title">Shop by Category</h2>
-        <div class="category-showcase">
-            <div class="fashion-banner banner-tshirts">
-                <div class="banner-content">
-                    👕 T-Shirts
-                    <p style="font-size: 1rem; margin-top: 0.5rem;">Graphic tees from your favorite series</p>
-                </div>
-            </div>
-            <div class="fashion-banner banner-hoodies">
-                <div class="banner-content">
-                    🧥 Hoodies
-                    <p style="font-size: 1rem; margin-top: 0.5rem;">Cozy wear with anime designs</p>
-                </div>
-            </div>
-            <div class="fashion-banner banner-accessories">
-                <div class="banner-content">
-                    🎒 Accessories
-                    <p style="font-size: 1rem; margin-top: 0.5rem;">Bags, hats, and more</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Grid -->
+    <!-- Fashion Products Grid -->
     <section class="products-section">
-        <div class="product-grid">
-            <div class="product-card" data-category="tshirts">
-                <div class="product-badge">Hot</div>
-                <div class="product-image">👕</div>
-                <h3>Demon Slayer Corps T-Shirt</h3>
-                <p class="product-price">$29.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+        <div class="products-grid">
+            <!-- Naruto Collection -->
+            <div class="product-card fashion-item" data-category="naruto">
+                <div class="product-image akatsuki-cloak-premium"></div>
+                <div class="product-info">
+                    <h3>Akatsuki Cloak - Premium Edition</h3>
+                    <p class="product-series">Naruto Shippuden</p>
+                    <p class="product-description">Authentic replica with cloud embroidery, one size fits all</p>
+                    <div class="product-price">$149.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="tshirts">
-                <div class="product-image">⚡</div>
-                <h3>Thunder Breathing T-Shirt</h3>
-                <p class="product-price">$29.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="naruto">
+                <div class="product-image leaf-jacket"></div>
+                <div class="product-info">
+                    <h3>Hidden Leaf Village Jacket</h3>
+                    <p class="product-series">Naruto</p>
+                    <p class="product-description">Green flak jacket with multiple pockets, authentic design</p>
+                    <div class="product-price">$129.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="hoodies">
-                <div class="product-badge new">New</div>
-                <div class="product-image">🧥</div>
-                <h3>Straw Hat Pirates Hoodie</h3>
-                <p class="product-price">$59.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="naruto">
+                <div class="product-image headband-collection"></div>
+                <div class="product-info">
+                    <h3>Headband Collection Set</h3>
+                    <p class="product-series">Naruto</p>
+                    <p class="product-description">5 village headbands: Leaf, Sand, Mist, Cloud, Rock</p>
+                    <div class="product-price">$79.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="hoodies">
-                <div class="product-image">🍥</div>
-                <h3>Akatsuki Cloud Hoodie</h3>
-                <p class="product-price">$54.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <!-- One Piece Collection -->
+            <div class="product-card fashion-item" data-category="one-piece">
+                <div class="product-image straw-hat-replica"></div>
+                <div class="product-info">
+                    <h3>Luffy's Straw Hat - Replica</h3>
+                    <p class="product-series">One Piece</p>
+                    <p class="product-description">Hand-woven straw hat with red ribbon, adjustable size</p>
+                    <div class="product-price">$59.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="jackets">
-                <div class="product-badge hot">Limited</div>
-                <div class="product-image">🧢</div>
-                <h3>Survey Corps Jacket</h3>
-                <p class="product-price">$79.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="one-piece">
+                <div class="product-image marine-coat"></div>
+                <div class="product-info">
+                    <h3>Marine Captain Coat</h3>
+                    <p class="product-series">One Piece</p>
+                    <p class="product-description">White justice coat with gold epaulets, premium quality</p>
+                    <div class="product-price">$189.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="jackets">
-                <div class="product-image">🔥</div>
-                <h3>Flame Hashira Jacket</h3>
-                <p class="product-price">$74.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="one-piece">
+                <div class="product-image pirate-bandana"></div>
+                <div class="product-info">
+                    <h3>Straw Hat Pirates Bandana Set</h3>
+                    <p class="product-series">One Piece</p>
+                    <p class="product-description">10 crew member bandanas, cotton blend</p>
+                    <div class="product-price">$69.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="accessories">
-                <div class="product-image">🎒</div>
-                <h3>Pokemon Pikachu Backpack</h3>
-                <p class="product-price">$49.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <!-- Demon Slayer Collection -->
+            <div class="product-card fashion-item" data-category="demon-slayer">
+                <div class="product-image tanjiro-haori"></div>
+                <div class="product-info">
+                    <h3>Tanjiro's Checkered Haori</h3>
+                    <p class="product-series">Demon Slayer</p>
+                    <p class="product-description">Green and black checkered pattern, traditional fabric</p>
+                    <div class="product-price">$119.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="accessories">
-                <div class="product-badge">Hot</div>
-                <div class="product-image">🧢</div>
-                <h3>Luffy Straw Hat</h3>
-                <p class="product-price">$24.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="demon-slayer">
+                <div class="product-image nezuko-kimono"></div>
+                <div class="product-info">
+                    <h3>Nezuko's Pink Kimono</h3>
+                    <p class="product-series">Demon Slayer</p>
+                    <p class="product-description">Pink kimono with hemp leaf pattern, authentic design</p>
+                    <div class="product-price">$159.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="accessories">
-                <div class="product-image">📿</div>
-                <h3>Naruto Akatsuki Ring</h3>
-                <p class="product-price">$19.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="demon-slayer">
+                <div class="product-image-hashira-uniform"></div>
+                <div class="product-info">
+                    <h3>Hashira Uniform Collection</h3>
+                    <p class="product-series">Demon Slayer</p>
+                    <p class="product-description">Complete uniform set with haori of your choice</p>
+                    <div class="product-price">$199.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="tshirts">
-                <div class="product-image">🐉</div>
-                <h3>Dragon Ball Z Capsule Corp Tee</h3>
-                <p class="product-price">$32.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <!-- Jujutsu Kaisen Collection -->
+            <div class="product-card fashion-item" data-category="jjk">
+                <div class="product-image gojo-blindfold"></div>
+                <div class="product-info">
+                    <h3>Gojo's Black Blindfold</h3>
+                    <p class="product-series">Jujutsu Kaisen</p>
+                    <p class="product-description">Premium silk blindfold, adjustable strap</p>
+                    <div class="product-price">$39.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="hoodies">
-                <div class="product-image">💀</div>
-                <h3>Tokyo Ghoul Kaneki Hoodie</h3>
-                <p class="product-price">$56.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="jjk">
+                <div class="product-image jujutsu-uniform"></div>
+                <div class="product-info">
+                    <h3>Jujutsu High Uniform</h3>
+                    <p class="product-series">Jujutsu Kaisen</p>
+                    <p class="product-description">Dark blue uniform with gold buttons, unisex</p>
+                    <div class="product-price">$139.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            
-            <div class="product-card" data-category="accessories">
-                <div class="product-badge new">New</div>
-                <div class="product-image">⌚</div>
-                <h3>Evangelion NERV Watch</h3>
-                <p class="product-price">$89.99</p>
-                <button class="btn-add-cart">Add to Cart</button>
+
+            <div class="product-card fashion-item" data-category="jjk">
+                <div class="product-image sukuna-finger-case"></div>
+                <div class="product-info">
+                    <h3>Cursed Object Finger Case</h3>
+                    <p class="product-series">Jujutsu Kaisen</p>
+                    <p class="product-description">Replica finger case with chain accessory</p>
+                    <div class="product-price">$49.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Streetwear Collection -->
+            <div class="product-card fashion-item" data-category="streetwear">
+                <div class="product-image-anime-hoodie"></div>
+                <div class="product-info">
+                    <h3>Anime Mix Hoodie</h3>
+                    <p class="product-series">Streetwear</p>
+                    <p class="product-description">Oversized hoodie with multi-anime graphics</p>
+                    <div class="product-price">$89.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card fashion-item" data-category="streetwear">
+                <div class="product-image-katanasneakers"></div>
+                <div class="product-info">
+                    <h3>Katana Sneakers</h3>
+                    <p class="product-series">Streetwear</p>
+                    <p class="product-description">High-top sneakers with katana blade design</p>
+                    <div class="product-price">$159.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card fashion-item" data-category="streetwear">
+                <div class="product-image-ramen-bowl-shirt"></div>
+                <div class="product-info">
+                    <h3>Ramen Bowl T-Shirt</h3>
+                    <p class="product-series">Streetwear</p>
+                    <p class="product-description">Oversized tee with ramen bowl graphic, multiple colors</p>
+                    <div class="product-price">$49.99</div>
+                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>AniCollect</h4>
-                <p>Your ultimate destination for anime figures and fashion</p>
+                <h3>AniCollect</h3>
+                <p>Your ultimate destination for premium anime collectibles and fashion</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -299,36 +241,17 @@
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <span>📱</span>
-                    <span>📸</span>
-                    <span>🐦</span>
-                    <span>📺</span>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Discord</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+            <p>&copy; 2024 AniCollect. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
-    <script>
-        function filterProducts(category) {
-            const cards = document.querySelectorAll('.product-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease-out forwards';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
