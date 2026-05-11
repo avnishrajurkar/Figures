@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AniCollect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-header {
+            padding: 150px 5% 80px;
+            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+            text-align: center;
+        }
+        
+        .page-title {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-form-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form-container:hover {
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.2);
+        }
+        
+        .contact-info-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-bg);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--light-text);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover {
+            transform: translateX(10px);
+            background: var(--darker-bg);
+        }
+        
+        .info-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+        
+        .info-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-content p {
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+        
+        .faq-section {
+            padding: 80px 5%;
+            background: var(--darker-bg);
+        }
+        
+        .faq-grid {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.2);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+            color: var(--gray-text);
+            line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .social-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+        
+        .social-links-large {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-10px) scale(1.1);
+            background: var(--gradient-1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">Ani<span class="highlight">Collect</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="figures.html">Figures</a></li>
+            <li><a href="fashion.html">Fashion</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="cart-icon">
+            <span class="cart-count">0</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <h1 class="page-title">Get In Touch</h1>
+        <p style="color: var(--gray-text); font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            Have questions? We'd love to hear from you! Send us a message and we'll respond as soon as possible.
+        </p>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="contact-section">
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2 style="font-family: 'Bangers', cursive; font-size: 2rem; margin-bottom: 1.5rem; color: var(--secondary-color);">Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="product">Product Question</option>
+                            <option value="shipping">Shipping Information</option>
+                            <option value="returns">Returns & Refunds</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message 📨</button>
+                </form>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="contact-info-container">
+                <h2 style="font-family: 'Bangers', cursive; font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary-color);">Contact Information</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h4>Address</h4>
+                        <p>123 Anime Street, Otaku District<br>Tokyo, Japan 100-0001</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-content">
+                        <h4>Email</h4>
+                        <p>support@anicollect.com<br>sales@anicollect.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📱</div>
+                    <div class="info-content">
+                        <h4>Phone</h4>
+                        <p>+81 3-1234-5678<br>Mon-Fri, 9AM-6PM JST</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">💬</div>
+                    <div class="info-content">
+                        <h4>Live Chat</h4>
+                        <p>Available 24/7 for instant support<br>Click the chat icon to start</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">What are your shipping options?</div>
+                <div class="faq-answer">
+                    We offer multiple shipping options including standard (5-7 business days), express (2-3 business days), and overnight shipping. International shipping is available to most countries with tracking included.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I track my order?</div>
+                <div class="faq-answer">
+                    Once your order ships, you'll receive an email with a tracking number. You can use this number on our website or the carrier's site to track your package in real-time.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What is your return policy?</div>
+                <div class="faq-answer">
+                    We accept returns within 30 days of delivery for unused items in original packaging. Pre-order items can be cancelled before shipment. Contact our support team to initiate a return.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are your products authentic?</div>
+                <div class="faq-answer">
+                    Yes! All our figures and merchandise are 100% authentic and sourced directly from manufacturers and licensed distributors. We guarantee authenticity on every product.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you offer pre-orders?</div>
+                <div class="faq-answer">
+                    Absolutely! We accept pre-orders for upcoming releases. A deposit may be required, and you'll be notified when your item is ready to ship.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <h2 class="section-title">Follow Us</h2>
+        <p style="color: var(--gray-text); font-size: 1.1rem;">Stay updated with new arrivals, exclusive deals, and anime news!</p>
+        <div class="social-links-large">
+            <div class="social-link" title="Facebook">📘</div>
+            <div class="social-link" title="Instagram">📸</div>
+            <div class="social-link" title="Twitter">🐦</div>
+            <div class="social-link" title="YouTube">📺</div>
+            <div class="social-link" title="Discord">💬</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AniCollect</h4>
+                <p>Your ultimate destination for anime figures and fashion</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="figures.html">Figures</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <span>📱</span>
+                    <span>📸</span>
+                    <span>🐦</span>
+                    <span>📺</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AniCollect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent! ✓';
+                submitBtn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
